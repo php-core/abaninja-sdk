@@ -1,0 +1,17 @@
+image: ghcr.io/devgine/composer-php:latest
+
+stages:
+  - test
+
+test-job:
+  stage: test
+  script:
+    - '[[ ! -e /.dockerenv ]] && exit 0'
+    - echo "Installing..."
+    - export COMPOSER_NO_DEV=0
+    - composer install
+    - echo "Running tests..."
+    - echo "$ENV_CONTENT" > .env
+    - composer test
+    - rm .env
+
