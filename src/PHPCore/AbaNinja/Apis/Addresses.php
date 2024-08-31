@@ -41,7 +41,7 @@ class Addresses extends Api
 	 */
 	public function listCompanyAddresses(int $page = 1, ?int $limit = null, array $tags = []): array
 	{
-		return $this->__list(
+		return $this->__paginate(
 			Company::class,
 			$page,
 			$limit,
@@ -66,7 +66,7 @@ class Addresses extends Api
 	 */
 	public function listPersonAddresses(int $page = 1, ?int $limit = null, array $tags = []): array
 	{
-		return $this->__list(
+		return $this->__paginate(
 			Person::class,
 			$page,
 			$limit,

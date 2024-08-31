@@ -41,6 +41,6 @@ class Finances extends Api
 	 */
 	public function listBankAccounts(): array
 	{
-		return $this->__list(BankAccount::class);
+		return $this->__paginate(BankAccount::class);
 	}
 }

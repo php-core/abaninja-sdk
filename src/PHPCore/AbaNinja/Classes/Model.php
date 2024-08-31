@@ -42,7 +42,7 @@ class Model implements IModel
 		foreach ((array)$fromData as $key => $value) {
 			if (static::getReflectionClass()->hasProperty($camelKey = snakeToCamelPHPCoreAbaNinja($key))) {
 				$propertyType = $propertyTypes[$camelKey];
-				$this->{$camelKey} = (empty($propertyType)
+				$finalValue = (empty($propertyType)
 					? $value
 					: (str_ends_with($propertyType, '[]')
 						? arrayToValueArrayPHPCoreAbaNinja($value, (substr($propertyType, 0, strlen($propertyType) - 2)))
@@ -61,6 +61,17 @@ class Model implements IModel
 						)
 					)
 				);
+				if (
+					is_null($finalValue)
+					&& !static::getReflectionClass()->getProperty($camelKey)->getType()->allowsNull()
+				) {
+					if (isPHPCoreAbaNinjaDebug()) {
+						var_dump($fromData);
+						returnNullOrDumpOnDebugPHPCoreAbaninja('"' . $camelKey . '" on ' . static::class . ' cannot be null!');
+					}
+					throw new RuntimeException('"' . $camelKey . '" cannot be null');
+				}
+				$this->{$camelKey} = $finalValue;
 			}
 		}
 	}

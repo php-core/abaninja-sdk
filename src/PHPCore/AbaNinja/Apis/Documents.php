@@ -67,7 +67,7 @@ class Documents extends Api
 	 */
 	public function listQuotes(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(Quote::class, $page, $limit, [
+		return $this->__paginate(Quote::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}
@@ -102,7 +102,7 @@ class Documents extends Api
 	 */
 	public function listContractNotes(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(ContractNote::class, $page, $limit, [
+		return $this->__paginate(ContractNote::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}
@@ -138,7 +138,7 @@ class Documents extends Api
 	 */
 	public function listDeliveryNotes(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(DeliveryNote::class, $page, $limit, [
+		return $this->__paginate(DeliveryNote::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}
@@ -174,7 +174,7 @@ class Documents extends Api
 	 */
 	public function listInvoices(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(Invoice::class, $page, $limit, [
+		return $this->__paginate(Invoice::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}
@@ -209,7 +209,7 @@ class Documents extends Api
 	 */
 	public function listCreditNotes(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(CreditNote::class, $page, $limit, [
+		return $this->__paginate(CreditNote::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}
@@ -244,7 +244,7 @@ class Documents extends Api
 	 */
 	public function listRecurringInvoices(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(RecurringInvoice::class, $page, $limit, [
+		return $this->__paginate(RecurringInvoice::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}
@@ -279,7 +279,7 @@ class Documents extends Api
 	 */
 	public function listTemplates(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(Template::class, $page, $limit, [
+		return $this->__paginate(Template::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}
@@ -305,7 +305,7 @@ class Documents extends Api
 	 */
 	public function listReceipts(int $page = 1, ?int $limit = null, ?DateTime $updatedSince = null): array
 	{
-		return $this->__list(Receipt::class, $page, $limit, [
+		return $this->__paginate(Receipt::class, $page, $limit, [
 			'updatedSince' => $updatedSince?->format('Y-m-d'),
 		]);
 	}

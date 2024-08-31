@@ -26,6 +26,11 @@ class Api
 {
 	private Client $client;
 
+	public static function getDataKey(): ?string
+	{
+		return 'data';
+	}
+
 	/**
 	 * @throws RuntimeException
 	 */
@@ -187,7 +192,7 @@ class Api
 	{
 		$response = $this->get($model::getResourceUri() . '/' . $uuid);
 		return $response->getHttpCode() === 200
-			? $model::from($response->getResponse()->data)
+			? $model::from((empty($dataKey = self::getDataKey()) ? $response->getResponse() : $response->getResponse()->{$dataKey}))
 			: throw ApiResponseException::fromResponse($response);
 	}
 
@@ -201,7 +206,31 @@ class Api
 	 * @return IModel[]
 	 * @throws ApiException|RuntimeException
 	 */
-	public function __list(string|IModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
+	public function __paginate(string|IModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
+	{
+		$data['page'] = $page;
+		if (!empty($limit)) {
+			$data['limit'] = $limit;
+		}
+		$response = $this->get(
+			$model::getResourceUri(),
+			$data,
+			$options
+		);
+		return $response->getHttpCode() === 200
+			? $model::fromMany((empty($dataKey = self::getDataKey()) ? $response->getResponse() : $response->getResponse()->{$dataKey}))
+			: throw ApiResponseException::fromResponse($response);
+	}
+
+	/**
+	 * @param string|IModel $model
+	 * @param array $data
+	 * @param array $options
+	 *
+	 * @return IModel[]
+	 * @throws ApiException|RuntimeException
+	 */
+	public function __list(string|IModel $model, array $data = [], array $options = []): array
 	{
 		$response = $this->get(
 			$model::getResourceUri(),
@@ -209,7 +238,7 @@ class Api
 			$options
 		);
 		return $response->getHttpCode() === 200
-			? $model::fromMany($response->getResponse()->data)
+			? $model::fromMany((empty($dataKey = self::getDataKey()) ? $response->getResponse() : $response->getResponse()->{$dataKey}))
 			: throw ApiResponseException::fromResponse($response);
 	}
 }

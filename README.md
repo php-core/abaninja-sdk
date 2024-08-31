@@ -132,7 +132,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 ### Finances
 
 | [FinancesBankAccounts](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts)                                                                                       | ❌ |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 | [List of bank accounts](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts/get)                     | ✅ |
 | [Create bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts/post)                      | ❌ |
 | [Single bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts~1{bankAccountUuid}/get)    | ✅ |
@@ -252,9 +252,9 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 
 | [SettingsTime](https://abaninja.ch/apidocs/#tag/SettingsTime)                                                                                                        | ❌ |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| [List holiday for state](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays/get)                                  | ❌ |
+| [List holiday for state](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays/get)                                  | ✅ |
 | [Create holiday entry](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays/post)                                   | ❌ |
-| [Single holiday](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays~1{holidayUuid}/get)                           | ❌ |
+| [Single holiday](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays~1{holidayUuid}/get)                           | ✅ |
 | [Update holiday](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays~1{holidayUuid}/patch)                         | ❌ |
 | [Remove holiday](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays~1{holidayUuid}/delete)                        | ❌ |
 | [List of activity types](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1time~1v2~1settings~1activity-types/get)                      | ❌ |
