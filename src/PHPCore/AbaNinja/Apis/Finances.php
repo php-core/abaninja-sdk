@@ -8,6 +8,10 @@
 namespace PHPCore\AbaNinja\Apis;
 
 use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\RuntimeException;
+use PHPCore\AbaNinja\Interfaces\IModel;
+use PHPCore\AbaNinja\Models\BankAccount;
 
 class Finances extends Api
 {
@@ -21,4 +25,22 @@ class Finances extends Api
 		parent::__construct($apiKey, $accountUuid, 'finances', $baseUrl, $apiVersion);
 	}
 
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function getBankAccount(string $uuid): BankAccount|IModel
+	{
+		return $this->__getOne(BankAccount::class, $uuid);
+	}
+
+	/**
+	 * @return BankAccount[]
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function listBankAccounts(): array
+	{
+		return $this->__list(BankAccount::class);
+	}
 }

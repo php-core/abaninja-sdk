@@ -132,10 +132,10 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 ### Finances
 
 | [FinancesBankAccounts](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts)                                                                                       | ❌ |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| [List of bank accounts](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts/get)                     | ❌ |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+| [List of bank accounts](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts/get)                     | ✅ |
 | [Create bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts/post)                      | ❌ |
-| [Single bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts~1{bankAccountUuid}/get)    | ❌ |
+| [Single bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts~1{bankAccountUuid}/get)    | ✅ |
 | [Update bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts~1{bankAccountUuid}/patch)  | ❌ |
 | [Remove bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts~1{bankAccountUuid}/delete) | ❌ |
 
