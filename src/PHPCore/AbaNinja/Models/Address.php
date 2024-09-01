@@ -86,12 +86,12 @@ class Address extends Model
 		return $this;
 	}
 
-	public function getStreetNumber(): string
+	public function getStreetNumber(): ?string
 	{
 		return $this->streetNumber;
 	}
 
-	public function setStreetNumber(string $streetNumber): Address
+	public function setStreetNumber(?string $streetNumber): Address
 	{
 		$this->streetNumber = $streetNumber;
 		return $this;
