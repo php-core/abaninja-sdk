@@ -21,22 +21,22 @@ class DocumentsModel extends Model
 
 	protected int $id;
 	protected string $uuid;
-	protected string $title;
-	protected ?string $terms;
-	protected ?string $publicNotes;
-	protected ?string $footerText;
+	protected ?string $title = null;
+	protected ?string $terms = null;
+	protected ?string $publicNotes = null;
+	protected ?string $footerText = null;
 	protected string $documentTotal;
 	protected string $reference;
 	protected string $currencyCode;
-	protected ?Receiver $receiver;
+	protected ?Receiver $receiver = null;
 
 	/** @var Position[] $positions */
-	protected array $positions;
-	protected ?string $customField1;
-	protected ?string $customField2;
-	protected ?string $customField3;
-	protected ?string $customField4;
-	protected ?DateTime $updatedAt;
+	protected array $positions = [];
+	protected ?string $customField1 = null;
+	protected ?string $customField2 = null;
+	protected ?string $customField3 = null;
+	protected ?string $customField4 = null;
+	protected ?DateTime $updatedAt = null;
 	protected bool $isArchived;
 	protected bool $isCancelled;
 	protected bool $pricesIncludeVat;
@@ -108,6 +108,17 @@ class DocumentsModel extends Model
 		return $this;
 	}
 
+	public function getFooterText(): ?string
+	{
+		return $this->footerText;
+	}
+
+	public function setFooterText(?string $footerText): DocumentsModel
+	{
+		$this->footerText = $footerText;
+		return $this;
+	}
+
 	public function getId(): int
 	{
 		return $this->id;
@@ -163,17 +174,6 @@ class DocumentsModel extends Model
 		return $this;
 	}
 
-	public function getFooterText(): ?string
-	{
-		return $this->footerText;
-	}
-
-	public function setFooterText(?string $footerText): DocumentsModel
-	{
-		$this->footerText = $footerText;
-		return $this;
-	}
-
 	public function getPublicNotes(): ?string
 	{
 		return $this->publicNotes;
@@ -182,17 +182,6 @@ class DocumentsModel extends Model
 	public function setPublicNotes(?string $publicNotes): DocumentsModel
 	{
 		$this->publicNotes = $publicNotes;
-		return $this;
-	}
-
-	public function getTerms(): ?string
-	{
-		return $this->terms;
-	}
-
-	public function setTerms(?string $terms): DocumentsModel
-	{
-		$this->terms = $terms;
 		return $this;
 	}
 
@@ -218,23 +207,34 @@ class DocumentsModel extends Model
 		return $this;
 	}
 
-	public function getSentStatus(): ?SentStatus
+	public function getSentStatus(): SentStatus
 	{
 		return $this->sentStatus;
 	}
 
-	public function setSentStatus(?SentStatus $sentStatus): DocumentsModel
+	public function setSentStatus(SentStatus $sentStatus): DocumentsModel
 	{
 		$this->sentStatus = $sentStatus;
 		return $this;
 	}
 
-	public function getTitle(): string
+	public function getTerms(): ?string
+	{
+		return $this->terms;
+	}
+
+	public function setTerms(?string $terms): DocumentsModel
+	{
+		$this->terms = $terms;
+		return $this;
+	}
+
+	public function getTitle(): ?string
 	{
 		return $this->title;
 	}
 
-	public function setTitle(string $title): DocumentsModel
+	public function setTitle(?string $title): DocumentsModel
 	{
 		$this->title = $title;
 		return $this;
