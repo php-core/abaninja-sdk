@@ -31,23 +31,23 @@ class Address extends Model
 		return $this;
 	}
 
-	public function getAddress(): string
+	public function getAddress(): ?string
 	{
 		return $this->address;
 	}
 
-	public function setAddress(string $address): Address
+	public function setAddress(?string $address): Address
 	{
 		$this->address = $address;
 		return $this;
 	}
 
-	public function getCity(): string
+	public function getCity(): ?string
 	{
 		return $this->city;
 	}
 
-	public function setCity(string $city): Address
+	public function setCity(?string $city): Address
 	{
 		$this->city = $city;
 		return $this;
@@ -97,12 +97,12 @@ class Address extends Model
 		return $this;
 	}
 
-	public function getZipCode(): string
+	public function getZipCode(): ?string
 	{
 		return $this->zipCode;
 	}
 
-	public function setZipCode(string $zipCode): Address
+	public function setZipCode(?string $zipCode): Address
 	{
 		$this->zipCode = $zipCode;
 		return $this;
