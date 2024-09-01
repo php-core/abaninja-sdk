@@ -13,12 +13,12 @@ class Address extends Model
 {
 	protected string $address;
 	protected string $streetNumber;
-	protected ?string $extension;
-	protected ?string $additionalField;
+	protected ?string $extension = null;
+	protected ?string $additionalField = null;
+	protected ?string $state = null;
 	protected string $city;
 	protected string $zipCode;
 	protected string $countryCode;
-	protected string $state;
 
 	public function getAdditionalField(): ?string
 	{
@@ -75,12 +75,12 @@ class Address extends Model
 		return $this;
 	}
 
-	public function getState(): string
+	public function getState(): ?string
 	{
 		return $this->state;
 	}
 
-	public function setState(string $state): Address
+	public function setState(?string $state): Address
 	{
 		$this->state = $state;
 		return $this;
