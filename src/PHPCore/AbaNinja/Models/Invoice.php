@@ -21,13 +21,13 @@ class Invoice extends DocumentsModel
 	protected string $invoiceNumber;
 
 	protected DateTime $invoiceDate;
-	protected ?DateTime $deliveryDate;
+	protected ?DateTime $deliveryDate = null;
 
-	protected ?DateTime $dueDate;
+	protected ?DateTime $dueDate = null;
 
 	protected bool $isImported;
 
-	protected string $openAmount;
+	protected string $openAmount = '';
 
 	protected DunningLevel $dunningLevel;
 
@@ -53,12 +53,12 @@ class Invoice extends DocumentsModel
 		return $this;
 	}
 
-	public function getDunningLevel(): ?DunningLevel
+	public function getDunningLevel(): DunningLevel
 	{
 		return $this->dunningLevel;
 	}
 
-	public function setDunningLevel(?DunningLevel $dunningLevel): Invoice
+	public function setDunningLevel(DunningLevel $dunningLevel): Invoice
 	{
 		$this->dunningLevel = $dunningLevel;
 		return $this;
