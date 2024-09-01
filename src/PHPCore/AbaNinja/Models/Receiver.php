@@ -15,8 +15,8 @@ class Receiver extends Model
 	protected ?string $companyUuid;
 	protected ?string $personUuid;
 	protected ?string $email = null;
-	protected string $customerNumber;
-	protected string $name;
+	protected ?string $customerNumber = null;
+	protected ?string $name = null;
 
 	public function getAddressUuid(): string
 	{
@@ -40,12 +40,12 @@ class Receiver extends Model
 		return $this;
 	}
 
-	public function getCustomerNumber(): string
+	public function getCustomerNumber(): ?string
 	{
 		return $this->customerNumber;
 	}
 
-	public function setCustomerNumber(string $customerNumber): Receiver
+	public function setCustomerNumber(?string $customerNumber): Receiver
 	{
 		$this->customerNumber = $customerNumber;
 		return $this;
@@ -62,12 +62,12 @@ class Receiver extends Model
 		return $this;
 	}
 
-	public function getName(): string
+	public function getName(): ?string
 	{
 		return $this->name;
 	}
 
-	public function setName(string $name): Receiver
+	public function setName(?string $name): Receiver
 	{
 		$this->name = $name;
 		return $this;

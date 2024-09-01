@@ -37,9 +37,9 @@ class DocumentsModel extends Model
 	protected ?string $customField3 = null;
 	protected ?string $customField4 = null;
 	protected ?DateTime $updatedAt = null;
-	protected bool $isArchived;
-	protected bool $isCancelled;
-	protected bool $pricesIncludeVat;
+	protected bool $isArchived = false;
+	protected bool $isCancelled = false;
+	protected bool $pricesIncludeVat = false;
 	protected SentStatus $sentStatus;
 
 	public function getCurrencyCode(): string
@@ -47,7 +47,7 @@ class DocumentsModel extends Model
 		return $this->currencyCode;
 	}
 
-	public function setCurrencyCode(string $currencyCode): DocumentsModel
+	public function setCurrencyCode(string $currencyCode): static
 	{
 		$this->currencyCode = $currencyCode;
 		return $this;
@@ -58,7 +58,7 @@ class DocumentsModel extends Model
 		return $this->customField1;
 	}
 
-	public function setCustomField1(?string $customField1): DocumentsModel
+	public function setCustomField1(?string $customField1): static
 	{
 		$this->customField1 = $customField1;
 		return $this;
@@ -69,7 +69,7 @@ class DocumentsModel extends Model
 		return $this->customField2;
 	}
 
-	public function setCustomField2(?string $customField2): DocumentsModel
+	public function setCustomField2(?string $customField2): static
 	{
 		$this->customField2 = $customField2;
 		return $this;
@@ -80,7 +80,7 @@ class DocumentsModel extends Model
 		return $this->customField3;
 	}
 
-	public function setCustomField3(?string $customField3): DocumentsModel
+	public function setCustomField3(?string $customField3): static
 	{
 		$this->customField3 = $customField3;
 		return $this;
@@ -91,7 +91,7 @@ class DocumentsModel extends Model
 		return $this->customField4;
 	}
 
-	public function setCustomField4(?string $customField4): DocumentsModel
+	public function setCustomField4(?string $customField4): static
 	{
 		$this->customField4 = $customField4;
 		return $this;
@@ -102,7 +102,7 @@ class DocumentsModel extends Model
 		return $this->documentTotal;
 	}
 
-	public function setDocumentTotal(string $documentTotal): DocumentsModel
+	public function setDocumentTotal(string $documentTotal): static
 	{
 		$this->documentTotal = $documentTotal;
 		return $this;
@@ -113,7 +113,7 @@ class DocumentsModel extends Model
 		return $this->footerText;
 	}
 
-	public function setFooterText(?string $footerText): DocumentsModel
+	public function setFooterText(?string $footerText): static
 	{
 		$this->footerText = $footerText;
 		return $this;
@@ -124,7 +124,7 @@ class DocumentsModel extends Model
 		return $this->id;
 	}
 
-	public function setId(int $id): DocumentsModel
+	public function setId(int $id): static
 	{
 		$this->id = $id;
 		return $this;
@@ -135,7 +135,7 @@ class DocumentsModel extends Model
 		return $this->isArchived;
 	}
 
-	public function setIsArchived(bool $isArchived): DocumentsModel
+	public function setIsArchived(bool $isArchived): static
 	{
 		$this->isArchived = $isArchived;
 		return $this;
@@ -146,18 +146,26 @@ class DocumentsModel extends Model
 		return $this->isCancelled;
 	}
 
-	public function setIsCancelled(bool $isCancelled): DocumentsModel
+	public function setIsCancelled(bool $isCancelled): static
 	{
 		$this->isCancelled = $isCancelled;
 		return $this;
 	}
 
+	/**
+	 * @return Position[]
+	 */
 	public function getPositions(): array
 	{
 		return $this->positions;
 	}
 
-	public function setPositions(array $positions): DocumentsModel
+	/**
+	 * @param Position[] $positions
+	 *
+	 * @return $this
+	 */
+	public function setPositions(array $positions): static
 	{
 		$this->positions = $positions;
 		return $this;
@@ -168,7 +176,7 @@ class DocumentsModel extends Model
 		return $this->pricesIncludeVat;
 	}
 
-	public function setPricesIncludeVat(bool $pricesIncludeVat): DocumentsModel
+	public function setPricesIncludeVat(bool $pricesIncludeVat): static
 	{
 		$this->pricesIncludeVat = $pricesIncludeVat;
 		return $this;
@@ -179,7 +187,7 @@ class DocumentsModel extends Model
 		return $this->publicNotes;
 	}
 
-	public function setPublicNotes(?string $publicNotes): DocumentsModel
+	public function setPublicNotes(?string $publicNotes): static
 	{
 		$this->publicNotes = $publicNotes;
 		return $this;
@@ -190,7 +198,7 @@ class DocumentsModel extends Model
 		return $this->receiver;
 	}
 
-	public function setReceiver(?Receiver $receiver): DocumentsModel
+	public function setReceiver(?Receiver $receiver): static
 	{
 		$this->receiver = $receiver;
 		return $this;
@@ -201,7 +209,7 @@ class DocumentsModel extends Model
 		return $this->reference;
 	}
 
-	public function setReference(string $reference): DocumentsModel
+	public function setReference(string $reference): static
 	{
 		$this->reference = $reference;
 		return $this;
@@ -212,7 +220,7 @@ class DocumentsModel extends Model
 		return $this->sentStatus;
 	}
 
-	public function setSentStatus(SentStatus $sentStatus): DocumentsModel
+	public function setSentStatus(SentStatus $sentStatus): static
 	{
 		$this->sentStatus = $sentStatus;
 		return $this;
@@ -223,7 +231,7 @@ class DocumentsModel extends Model
 		return $this->terms;
 	}
 
-	public function setTerms(?string $terms): DocumentsModel
+	public function setTerms(?string $terms): static
 	{
 		$this->terms = $terms;
 		return $this;
@@ -234,7 +242,7 @@ class DocumentsModel extends Model
 		return $this->title;
 	}
 
-	public function setTitle(?string $title): DocumentsModel
+	public function setTitle(?string $title): static
 	{
 		$this->title = $title;
 		return $this;
@@ -245,7 +253,7 @@ class DocumentsModel extends Model
 		return $this->updatedAt;
 	}
 
-	public function setUpdatedAt(?DateTime $updatedAt): DocumentsModel
+	public function setUpdatedAt(?DateTime $updatedAt): static
 	{
 		$this->updatedAt = $updatedAt;
 		return $this;
@@ -256,7 +264,7 @@ class DocumentsModel extends Model
 		return $this->uuid;
 	}
 
-	public function setUuid(string $uuid): DocumentsModel
+	public function setUuid(string $uuid): static
 	{
 		$this->uuid = $uuid;
 		return $this;

@@ -11,6 +11,7 @@ use BackedEnum;
 use DateTime;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 use PHPCore\AbaNinja\Interfaces\IModel;
+use PHPCore\AbaNinja\Models\Invoice;
 use ReflectionClass;
 use ReflectionProperty;
 use stdClass;
@@ -18,7 +19,6 @@ use Throwable;
 
 class Model implements IModel
 {
-
 	/**
 	 * @throws RuntimeException
 	 */
@@ -36,6 +36,10 @@ class Model implements IModel
 	private static array $reflections = [];
 	private static array $propertyTypes = [];
 
+	/**
+	 * @throws \ReflectionException
+	 * @throws RuntimeException
+	 */
 	public function __construct(array|stdClass $fromData = [])
 	{
 		$propertyTypes = self::getPropertyTypes();
@@ -109,10 +113,15 @@ class Model implements IModel
 						[, $type] = $matches;
 						return $type;
 					}
+					return null;
 				}, $properties)
 			);
 	}
 
+	/**
+	 * @throws \ReflectionException
+	 * @throws RuntimeException
+	 */
 	public static function from(array|stdClass $fromData, bool $fromMany = false): static
 	{
 		if (!$fromMany && !empty($subKey = static::getSubKey())) {
@@ -137,6 +146,8 @@ class Model implements IModel
 	 * @param array $fromListData
 	 *
 	 * @return static[]
+	 * @throws RuntimeException
+	 * @throws \ReflectionException
 	 */
 	public static function fromMany(mixed $fromListData): array
 	{

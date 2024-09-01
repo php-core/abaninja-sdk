@@ -8,6 +8,7 @@
 namespace PHPCore\AbaNinja\Models;
 
 use PHPCore\AbaNinja\Classes\Model;
+use stdClass;
 
 class Position extends Model
 {
@@ -19,7 +20,7 @@ class Position extends Model
 	protected string $unitCode;
 	protected int $singlePrice;
 	protected int $positionTotal;
-	protected Discount $discounts;
+	protected ?Discount $discounts = null;
 	protected Vat $vat;
 
 	public function getDiscounts(): Discount

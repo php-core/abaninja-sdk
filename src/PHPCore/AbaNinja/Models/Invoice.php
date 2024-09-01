@@ -25,7 +25,7 @@ class Invoice extends DocumentsModel
 
 	protected ?DateTime $dueDate = null;
 
-	protected bool $isImported;
+	protected bool $isImported = false;
 
 	protected string $openAmount = '';
 
