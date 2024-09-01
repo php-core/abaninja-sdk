@@ -11,13 +11,13 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class Address extends Model
 {
-	protected string $address;
+	protected ?string $address = null;
 	protected ?string $streetNumber = null;
 	protected ?string $extension = null;
 	protected ?string $additionalField = null;
 	protected ?string $state = null;
-	protected string $city;
-	protected string $zipCode;
+	protected ?string $city = null;
+	protected ?string $zipCode = null;
 	protected string $countryCode = 'CH';
 
 	public function getAdditionalField(): ?string
