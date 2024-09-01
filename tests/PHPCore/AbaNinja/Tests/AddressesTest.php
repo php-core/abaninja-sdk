@@ -8,6 +8,7 @@
 namespace PHPCore\AbaNinja\Tests;
 
 use PHPCore\AbaNinja\AbaNinja;
+use PHPCore\AbaNinja\Models\Address;
 use PHPUnit\Framework\TestCase;
 
 final class AddressesTest extends TestCase
@@ -38,6 +39,10 @@ final class AddressesTest extends TestCase
 		self::assertEquals(
 			$_ENV['TEST_PERSON_UUID'],
 			AbaNinja::AddressesApi()->getPerson($_ENV['TEST_PERSON_UUID'])->getUuid()
+		);
+		self::assertInstanceOf(
+			Address::class,
+			AbaNinja::AddressesApi()->getPerson($_ENV['TEST_PERSON_UUID'])->getAddresses()[0]
 		);
 	}
 

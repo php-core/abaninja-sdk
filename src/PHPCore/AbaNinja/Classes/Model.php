@@ -45,7 +45,16 @@ class Model implements IModel
 				$finalValue = (empty($propertyType)
 					? $value
 					: (str_ends_with($propertyType, '[]')
-						? arrayToValueArrayPHPCoreAbaNinja($value, (substr($propertyType, 0, strlen($propertyType) - 2)))
+						? arrayToValueArrayPHPCoreAbaNinja(
+							$value,
+							(is_subclass_of(
+								$className = '\\PHPCore\\AbaNinja\\Models\\' . ($propertyType = (substr($propertyType, 0, strlen($propertyType) - 2))),
+								Model::class
+							)
+								? $className
+								: $propertyType
+							)
+						)
 						: (is_subclass_of($propertyType, Model::class) || is_subclass_of($propertyType, BackedEnum::class)
 							? (is_null($value)
 								? null
