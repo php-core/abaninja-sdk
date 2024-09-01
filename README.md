@@ -172,11 +172,11 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 
 ### Units
 
-| [Units](https://abaninja.ch/apidocs/#tag/Units)                                                                                  | ❌ |
-|----------------------------------------------------------------------------------------------------------------------------------|---|
-| [Units List](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/get)                       | ❌ |
+| [Units](https://abaninja.ch/apidocs/#tag/Units)                                                                                  | ◐ |
+|----------------------------------------------------------------------------------------------------------------------------------|--|
+| [Units List](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/get)                       | ✅ |
 | [Create a new unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/post)               | ❌ |
-| [Single Unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/get)          | ❌ |
+| [Single Unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/get)          | ✅ |
 | [Single unit update](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/patch) | ❌ |
 | [Delete unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/delete)       | ❌ |
 

@@ -8,6 +8,10 @@
 namespace PHPCore\AbaNinja\Apis;
 
 use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\RuntimeException;
+use PHPCore\AbaNinja\Interfaces\IModel;
+use PHPCore\AbaNinja\Models\Unit;
 
 class Units extends Api
 {
@@ -19,5 +23,24 @@ class Units extends Api
 	)
 	{
 		parent::__construct($apiKey, $accountUuid, 'units', $baseUrl, $apiVersion);
+	}
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function getUnit(string $udid): Unit|IModel
+	{
+		return $this->__getOne(Unit::class, $udid);
+	}
+
+	/**
+	 * @return Unit[]
+	 * @throws ApiException
+	 * @throws RuntimeException
+	 */
+	public function listUnits(): array
+	{
+		return $this->__list(Unit::class);
 	}
 }
