@@ -25,6 +25,7 @@ class Receipt extends DocumentsModel
 	protected bool $archived;
 	protected bool $cancelled;
 	protected int $balance;
+
 	/** @var CashDiscount[] $cashDiscounts */
 	protected array $cashDiscounts;
 

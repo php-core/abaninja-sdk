@@ -143,11 +143,11 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 
 ### Products
 
-| [Products](https://abaninja.ch/apidocs/#tag/Products)                                                                                                                                 | ❌ |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| [Products List](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/get)                                                                | ❌ |
+| [Products](https://abaninja.ch/apidocs/#tag/Products)                                                                                                                                 | ◐ |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+| [Products List](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/get)                                                                | ✅ |
 | [Create a new product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/post)                                                        | ❌ |
-| [Get an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/get)                                       | ❌ |
+| [Get an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/get)                                       | ✅ |
 | [Update an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/patch)                                  | ❌ |
 | [Remove an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/delete)                                 | ❌ |
 | [Available actions for an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1{productUuid}~1actions/get)                      | ❌ |
@@ -157,12 +157,12 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 
 ### ProductGroups
 
-| [ProductGroups](https://abaninja.ch/apidocs/#tag/ProductGroups)                                                                                                            | ❌ |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| [Product groups List](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/get)                                    | ❌ |
+| [ProductGroups](https://abaninja.ch/apidocs/#tag/ProductGroups)                                                                                                            | ◐ |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+| [Product groups List](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/get)                                    | ✅ |
 | [Create a new product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/post)                            | ❌ |
 | [Check product group number](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1check-group-number/get)         | ❌ |
-| [single product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/get)                      | ❌ |
+| [single product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/get)                      | ✅ |
 | [Update product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/patch)                    | ❌ |
 | [Delete product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/delete)                   | ❌ |
 | [Archive product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}~1actions~1archive/patch) | ❌ |
@@ -172,11 +172,11 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 
 ### Units
 
-| [Units](https://abaninja.ch/apidocs/#tag/Units)                                                                                  | ❌ |
-|----------------------------------------------------------------------------------------------------------------------------------|---|
-| [Units List](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/get)                       | ❌ |
+| [Units](https://abaninja.ch/apidocs/#tag/Units)                                                                                  | ◐ |
+|----------------------------------------------------------------------------------------------------------------------------------|--|
+| [Units List](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/get)                       | ✅ |
 | [Create a new unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/post)               | ❌ |
-| [Single Unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/get)          | ❌ |
+| [Single Unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/get)          | ✅ |
 | [Single unit update](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/patch) | ❌ |
 | [Delete unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/delete)       | ❌ |
 
@@ -272,6 +272,10 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Holiday settings](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1settings/get)                                        | ❌ |
 | [Update holiday settings](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1settings/patch)                               | ❌ |
 | [Convert holiday](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1settings~1convert/post)                               | ❌ |
+
+## License
+
+MIT
 
 ## Author
 

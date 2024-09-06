@@ -8,37 +8,53 @@
 namespace PHPCore\AbaNinja\Models;
 
 use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Enums\PositionKind;
 
 class Position extends Model
 {
+	protected PositionKind $kind;
 	protected int $positionNumber;
-	protected string $kind;
-	protected string $productNumber;
-	protected string $productDescription;
-	protected int $quantity;
-	protected string $unitCode;
-	protected int $singlePrice;
-	protected int $positionTotal;
-	protected Discount $discounts;
+	protected ?string $productNumber = null;
+	protected ?string $productDescription = null;
+	protected ?string $title = null;
+	protected ?float $quantity = null;
+	protected ?string $unitCode = null;
+	protected ?int $singlePrice = null;
+	protected ?int $positionTotal = null;
+	protected ?Discount $discounts = null;
 	protected Vat $vat;
 
-	public function getDiscounts(): Discount
+	/** @var self[] $items */
+	protected array $items = [];
+
+	public function getDiscounts(): ?Discount
 	{
 		return $this->discounts;
 	}
 
-	public function setDiscounts(Discount $discounts): Position
+	public function setDiscounts(?Discount $discounts): Position
 	{
 		$this->discounts = $discounts;
 		return $this;
 	}
 
-	public function getKind(): string
+	public function getItems(): array
+	{
+		return $this->items;
+	}
+
+	public function setItems(array $items): Position
+	{
+		$this->items = $items;
+		return $this;
+	}
+
+	public function getKind(): PositionKind
 	{
 		return $this->kind;
 	}
 
-	public function setKind(string $kind): Position
+	public function setKind(PositionKind $kind): Position
 	{
 		$this->kind = $kind;
 		return $this;
@@ -55,67 +71,78 @@ class Position extends Model
 		return $this;
 	}
 
-	public function getPositionTotal(): int
+	public function getPositionTotal(): ?int
 	{
 		return $this->positionTotal;
 	}
 
-	public function setPositionTotal(int $positionTotal): Position
+	public function setPositionTotal(?int $positionTotal): Position
 	{
 		$this->positionTotal = $positionTotal;
 		return $this;
 	}
 
-	public function getProductDescription(): string
+	public function getProductDescription(): ?string
 	{
 		return $this->productDescription;
 	}
 
-	public function setProductDescription(string $productDescription): Position
+	public function setProductDescription(?string $productDescription): Position
 	{
 		$this->productDescription = $productDescription;
 		return $this;
 	}
 
-	public function getProductNumber(): string
+	public function getProductNumber(): ?string
 	{
 		return $this->productNumber;
 	}
 
-	public function setProductNumber(string $productNumber): Position
+	public function setProductNumber(?string $productNumber): Position
 	{
 		$this->productNumber = $productNumber;
 		return $this;
 	}
 
-	public function getQuantity(): int
+	public function getQuantity(): ?float
 	{
 		return $this->quantity;
 	}
 
-	public function setQuantity(int $quantity): Position
+	public function setQuantity(?float $quantity): Position
 	{
 		$this->quantity = $quantity;
 		return $this;
 	}
 
-	public function getSinglePrice(): int
+	public function getSinglePrice(): ?int
 	{
 		return $this->singlePrice;
 	}
 
-	public function setSinglePrice(int $singlePrice): Position
+	public function setSinglePrice(?int $singlePrice): Position
 	{
 		$this->singlePrice = $singlePrice;
 		return $this;
 	}
 
-	public function getUnitCode(): string
+	public function getTitle(): ?string
+	{
+		return $this->title;
+	}
+
+	public function setTitle(?string $title): Position
+	{
+		$this->title = $title;
+		return $this;
+	}
+
+	public function getUnitCode(): ?string
 	{
 		return $this->unitCode;
 	}
 
-	public function setUnitCode(string $unitCode): Position
+	public function setUnitCode(?string $unitCode): Position
 	{
 		$this->unitCode = $unitCode;
 		return $this;

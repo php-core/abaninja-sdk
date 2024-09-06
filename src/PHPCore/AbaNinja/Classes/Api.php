@@ -206,7 +206,7 @@ class Api
 	 * @return IModel[]
 	 * @throws ApiException|RuntimeException
 	 */
-	public function __paginate(string|IModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
+	public function  __paginate(string|IModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
 	{
 		$data['page'] = $page;
 		if (!empty($limit)) {
