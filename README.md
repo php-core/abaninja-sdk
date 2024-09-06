@@ -273,6 +273,10 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Update holiday settings](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1settings/patch)                               | ❌ |
 | [Convert holiday](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1settings~1convert/post)                               | ❌ |
 
+## License
+
+MIT
+
 ## Author
 
 PHP-Core [dev@php-core.com](mailto:dev@php-core.com)
