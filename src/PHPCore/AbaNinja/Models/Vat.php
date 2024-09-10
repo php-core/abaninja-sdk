@@ -11,15 +11,15 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class Vat extends Model
 {
-	protected int $percentage;
+	protected float $percentage;
 	protected string $amount;
 
-	public function getPercentage(): int
+	public function getPercentage(): float
 	{
 		return $this->percentage;
 	}
 
-	public function setPercentage(int $percentage): Vat
+	public function setPercentage(float $percentage): Vat
 	{
 		$this->percentage = $percentage;
 		return $this;

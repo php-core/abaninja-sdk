@@ -11,14 +11,14 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class Discount extends Model
 {
-	protected int $percentage;
+	protected float $percentage;
 
-	public function getPercentage(): int
+	public function getPercentage(): float
 	{
 		return $this->percentage;
 	}
 
-	public function setPercentage(int $percentage): Discount
+	public function setPercentage(float $percentage): Discount
 	{
 		$this->percentage = $percentage;
 		return $this;

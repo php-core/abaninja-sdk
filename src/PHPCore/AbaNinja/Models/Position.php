@@ -19,8 +19,8 @@ class Position extends Model
 	protected ?string $title = null;
 	protected ?float $quantity = null;
 	protected ?string $unitCode = null;
-	protected ?int $singlePrice = null;
-	protected ?int $positionTotal = null;
+	protected ?float $singlePrice = null;
+	protected ?float $positionTotal = null;
 	protected ?Discount $discounts = null;
 	protected Vat $vat;
 
@@ -71,12 +71,12 @@ class Position extends Model
 		return $this;
 	}
 
-	public function getPositionTotal(): ?int
+	public function getPositionTotal(): ?float
 	{
 		return $this->positionTotal;
 	}
 
-	public function setPositionTotal(?int $positionTotal): Position
+	public function setPositionTotal(?float $positionTotal): Position
 	{
 		$this->positionTotal = $positionTotal;
 		return $this;
@@ -115,12 +115,12 @@ class Position extends Model
 		return $this;
 	}
 
-	public function getSinglePrice(): ?int
+	public function getSinglePrice(): ?float
 	{
 		return $this->singlePrice;
 	}
 
-	public function setSinglePrice(?int $singlePrice): Position
+	public function setSinglePrice(?float $singlePrice): Position
 	{
 		$this->singlePrice = $singlePrice;
 		return $this;
