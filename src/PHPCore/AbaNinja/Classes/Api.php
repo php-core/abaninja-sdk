@@ -241,4 +241,16 @@ class Api
 			? $model::fromMany((empty($dataKey = self::getDataKey()) ? $response->getResponse() : $response->getResponse()->{$dataKey}))
 			: throw ApiResponseException::fromResponse($response);
 	}
+
+	public function __create(IModel $model): IModel
+	{
+		$response = $this->post(
+			$model::getResourceUri(),
+			$data,
+			$options
+		);
+		return $response->getHttpCode() === 200
+			? $model::fromMany((empty($dataKey = self::getDataKey()) ? $response->getResponse() : $response->getResponse()->{$dataKey}))
+			: throw ApiResponseException::fromResponse($response);
+	}
 }
