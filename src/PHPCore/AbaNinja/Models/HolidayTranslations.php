@@ -11,10 +11,24 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class HolidayTranslations extends Model
 {
-	protected ?HolidayTranslation $de;
-	protected ?HolidayTranslation $en;
-	protected ?HolidayTranslation $fr;
-	protected ?HolidayTranslation $it;
+	public function __construct(
+		protected ?HolidayTranslation $de = null,
+		protected ?HolidayTranslation $en = null,
+		protected ?HolidayTranslation $fr = null,
+		protected ?HolidayTranslation $it = null
+	) {}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'de' => $this->de?->getCreateData() ?? ['description' => ''],
+			'en' => $this->en?->getCreateData() ?? ['description' => ''],
+			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
+			'it' => $this->it?->getCreateData() ?? ['description' => ''],
+		];
+	}
+
+	/* getters and setters */
 
 	public function getDe(): ?HolidayTranslation
 	{

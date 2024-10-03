@@ -11,12 +11,14 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class Receiver extends Model
 {
-	protected string $addressUuid;
-	protected ?string $companyUuid;
-	protected ?string $personUuid;
-	protected ?string $email = null;
-	protected ?string $customerNumber = null;
-	protected ?string $name = null;
+	public function __construct(
+		protected ?string $addressUuid = null,
+		protected ?string $companyUuid = null,
+		protected ?string $personUuid = null,
+		protected ?string $email = null,
+		protected ?string $customerNumber = null,
+		protected ?string $name = null,
+	) {}
 
 	public function getAddressUuid(): string
 	{

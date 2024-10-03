@@ -11,12 +11,14 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class ProductProductGroup extends Model
 {
-	protected int $productGroupId;
-	protected string $productGroupUuid;
-	protected int $productGroupNumber;
-	protected string $productGroupDescription;
-	protected int $productGroupBookingAccountNumber;
-	protected int $productGroupBookingAccountId;
+	public function __construct(
+		protected string  $productGroupDescription,
+		protected int     $productGroupBookingAccountNumber,
+		protected int     $productGroupBookingAccountId,
+		protected ?int    $productGroupNumber = null,
+		protected ?int    $productGroupId = null,
+		protected ?string $productGroupUuid = null,
+	) {}
 
 	public function getProductGroupBookingAccountId(): int
 	{

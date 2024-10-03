@@ -11,26 +11,38 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class DocumentDiscount extends Model
 {
-	protected int $amount;
-	protected int $percentage;
+	public function __construct(
+		protected ?float $amount = null,
+		protected ?float $percentage = null,
+	) {}
 
-	public function getAmount(): int
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'amount'     => $this->amount,
+			'percentage' => $this->percentage,
+		];
+	}
+
+	/* getters and setters */
+
+	public function getAmount(): ?float
 	{
 		return $this->amount;
 	}
 
-	public function setAmount(int $amount): DocumentDiscount
+	public function setAmount(?float $amount): DocumentDiscount
 	{
 		$this->amount = $amount;
 		return $this;
 	}
 
-	public function getPercentage(): int
+	public function getPercentage(): ?float
 	{
 		return $this->percentage;
 	}
 
-	public function setPercentage(int $percentage): DocumentDiscount
+	public function setPercentage(?float $percentage): DocumentDiscount
 	{
 		$this->percentage = $percentage;
 		return $this;

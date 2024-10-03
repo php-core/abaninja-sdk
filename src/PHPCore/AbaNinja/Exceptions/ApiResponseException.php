@@ -15,6 +15,13 @@ class ApiResponseException extends ApiException
 	public static function fromResponse(ApiResponse $response, ?Throwable $previous = null): self
 	{
 		$responseData = $response->getResponse();
+		if (empty($responseData->error)) {
+			return new self(
+				'ERROR! Response: ' . var_export($response->getResponse(), true),
+				$response->getHttpCode(),
+				$previous
+			);
+		}
 		return new self(
 			$responseData->error . ': '
 			. $responseData->error_description,

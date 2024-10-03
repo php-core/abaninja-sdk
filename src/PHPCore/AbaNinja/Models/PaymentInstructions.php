@@ -11,9 +11,22 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class PaymentInstructions extends Model
 {
-	protected string $iban;
-	protected string $bic;
-	protected string $reference;
+	public function __construct(
+		protected string $iban,
+		protected string $bic,
+		protected string $reference,
+	) {}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'iban'      => $this->iban,
+			'bic'       => $this->bic,
+			'reference' => $this->reference,
+		];
+	}
+
+	/* getters and setters */
 
 	public function getBic(): string
 	{

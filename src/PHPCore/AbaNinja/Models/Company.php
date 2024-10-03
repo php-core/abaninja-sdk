@@ -18,30 +18,59 @@ class Company extends Model
 		return 'companies';
 	}
 
-	protected AddressType $type;
-	protected string $uuid;
-	protected string $currencyCode;
-	protected string $customerNumber;
-	protected string $name;
-	protected ?string $idNumber;
-	protected string $vatNumber;
-	protected string $language;
+	public function __construct(
+		protected AddressType   $type,
+		protected ?string       $name = null,
+		protected ?string       $currencyCode = null,
+		protected ?string       $customerNumber = null,
+		protected ?string       $language = null,
+		protected ?string       $vatNumber = null,
+		protected ?string       $idNumber = null,
 
-	/** @var ContactPerson[] $contactPersons */
-	protected array $contactPersons;
+		/** @var ContactPerson[] $contactPersons */
+		protected array         $contactPersons = [],
 
-	/** @var string[] $tags */
-	protected array $tags;
+		/** @var string[] $tags */
+		protected array         $tags = [],
 
-	/** @var Contact[] $contacts */
-	protected array $contacts;
+		/** @var Contact[] $contacts */
+		protected array         $contacts = [],
 
-	/** @var Address[] $addresses */
-	protected array $addresses;
+		/** @var Address[] $addresses */
+		protected array         $addresses = [],
 
-	protected ?string $privateNotes;
-	protected bool $automaticDunning;
-	protected ?PaymentTerms $paymentTerms;
+		protected ?string       $privateNotes = null,
+		protected bool          $automaticDunning = false,
+		protected ?PaymentTerms $paymentTerms = null,
+		protected ?string       $uuid = null,
+	)
+	{
+		if ($this->paymentTerms === null) {
+			$this->paymentTerms = PaymentTerms::None;
+		}
+	}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'type'              => $this->type,
+			'customer_number'   => $this->customerNumber,
+			'name'              => $this->name,
+			'id_number'         => $this->idNumber,
+			'vat_number'        => $this->vatNumber,
+			'currency_code'     => $this->currencyCode,
+			'language'          => $this->language,
+			'contacts'          => self::getCreateDataArray($this->contacts),
+			'tags'              => $this->tags,
+			'contact_persons'   => self::getCreateDataArray($this->contactPersons),
+			'addresses'         => self::getCreateDataArray($this->addresses),
+			'private_notes'     => $this->privateNotes,
+			'automatic_dunning' => $this->automaticDunning,
+			'payment_terms'     => $this->paymentTerms,
+		];
+	}
+
+	/* getters and setters */
 
 	/**
 	 * @return Address[]

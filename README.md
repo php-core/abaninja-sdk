@@ -160,7 +160,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [ProductGroups](https://abaninja.ch/apidocs/#tag/ProductGroups)                                                                                                            | ◐ |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
 | [Product groups List](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/get)                                    | ✅ |
-| [Create a new product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/post)                            | ❌ |
+| [Create a new product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/post)                            | ✅ |
 | [Check product group number](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1check-group-number/get)         | ❌ |
 | [single product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/get)                      | ✅ |
 | [Update product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/patch)                    | ❌ |

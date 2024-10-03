@@ -19,26 +19,50 @@ class Person extends Model
 		return 'persons';
 	}
 
-	protected AddressType $type;
-	protected string $uuid;
-	protected string $firstName;
-	protected string $lastName;
-	protected Salutation $salutation;
-	protected string $currencyCode;
-	protected string $language;
+	public function __construct(
+		protected AddressType   $type,
+		protected string        $firstName,
+		protected string        $lastName,
+		protected Salutation    $salutation,
+		protected string        $currencyCode,
+		protected string        $language,
 
-	/** @var Contact[] $contacts */
-	protected array $contacts;
+		/** @var Contact[] $contacts */
+		protected array         $contacts,
 
-	/** @var string[] $tags */
-	protected array $tags;
+		/** @var string[] $tags */
+		protected array         $tags,
 
-	/** @var Address[] $addresses */
-	protected array $addresses;
+		/** @var Address[] $addresses */
+		protected array         $addresses,
 
-	protected ?string $privateNotes;
-	protected bool $automaticDunning;
-	protected ?PaymentTerms $paymentTerms;
+		protected bool          $automaticDunning = false,
+		protected ?string       $privateNotes = null,
+		protected ?PaymentTerms $paymentTerms = null,
+		protected ?string       $uuid = null,
+	) {}
+
+	/* create data */
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'type'              => $this->type,
+			'first_name'        => $this->firstName,
+			'last_name'         => $this->lastName,
+			'salutation'        => $this->salutation->value,
+			'currency_code'     => $this->currencyCode,
+			'language'          => $this->language,
+			'tags'              => $this->tags,
+			'contacts'          => self::getCreateDataArray($this->contacts),
+			'addresses'         => self::getCreateDataArray($this->addresses),
+			'private_notes'     => $this->privateNotes,
+			'automatic_dunning' => $this->automaticDunning,
+			'payment_terms'     => $this->paymentTerms,
+		];
+	}
+
+	/* getter and setters */
 
 	/**
 	 * @return Address[]

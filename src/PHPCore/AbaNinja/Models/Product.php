@@ -8,6 +8,7 @@
 namespace PHPCore\AbaNinja\Models;
 
 use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
 class Product extends Model
 {
@@ -16,29 +17,50 @@ class Product extends Model
 		return 'products';
 	}
 
-	protected int $productId;
-	protected string $productUuid;
-	protected string $productKey;
-	protected ?string $eanCode;
-	protected ProductUnit $productUnit;
+	public function __construct(
+		protected string               $productKey,
+		protected ProductTranslations  $translations,
+		protected string|float         $cost = 0,
+		/** @var ProductProperty[] $properties */
+		protected array                $properties = [],
+		protected bool                 $isService = false,
+		protected ?string              $unitUuid = null,
+		protected ?int                 $productGroupNumber = null,
+		/** @var string[] $tags */
+		protected array                $tags = [],
+		protected ?string              $eanCode = null,
+		protected ?int                 $taxRate = null,
+		protected null|int|string      $bookingAccountNumber = null,
 
-	/** @var string[] $tags */
-	protected array $tags;
+		protected ?int                 $productId = null,
+		protected ?string              $productUuid = null,
+		protected ?ProductUnit         $productUnit = null,
+		protected ?ProductProductGroup $productGroup = null,
+		protected bool                 $isInclusive = false,
+		protected ?\DateTime           $archivedAt = null
+	) {}
 
-	/** @var ProductProperty[] $properties */
-	protected array $properties;
+	/**
+	 * @throws RuntimeException
+	 */
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'productKey'           => $this->productKey,
+			'productGroupNumber'   => $this->productGroupNumber,
+			'isService'            => $this->isService,
+			'tags'                 => $this->tags,
+			'translations'         => $this->translations->getCreateData(),
+			'properties'           => self::getCreateDataArray($this->properties),
+			'eanCode'              => $this->eanCode,
+			'unitUuid'             => $this->unitUuid,
+			'cost'                 => $this->cost,
+			'taxRate'              => $this->taxRate,
+			'bookingAccountNumber' => $this->bookingAccountNumber,
+		];
+	}
 
-	protected ProductTranslations $translations;
-
-	protected string $cost;
-	protected ?int $taxRate = null;
-
-	protected ProductProductGroup $productGroup;
-
-	protected int $bookingAccountNumber;
-	protected bool $isInclusive;
-	protected bool $isService;
-	protected ?\DateTime $archivedAt = null;
+	/* getters and setters */
 
 	public function getArchivedAt(): ?\DateTime
 	{

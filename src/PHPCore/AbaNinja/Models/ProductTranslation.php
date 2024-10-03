@@ -11,8 +11,20 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class ProductTranslation extends Model
 {
-	protected string $productName;
-	protected string $productDescription;
+	public function __construct(
+		protected ?string $productName = null,
+		protected ?string $productDescription = null
+	) {}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'productName'        => $this->productName,
+			'productDescription' => $this->productDescription,
+		];
+	}
+
+	/* getters and setters */
 
 	public function getProductDescription(): string
 	{

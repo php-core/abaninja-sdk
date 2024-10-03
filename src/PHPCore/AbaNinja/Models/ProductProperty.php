@@ -11,11 +11,26 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class ProductProperty extends Model
 {
-	protected int $id;
-	protected string $type;
-	protected string $value;
-	protected string $isocode;
-	protected ProductPropertyTranslations $translations;
+	public function __construct(
+		protected int                         $id,
+		protected string                      $type,
+		protected string                      $value,
+		protected string                      $isocode,
+		protected ProductPropertyTranslations $translations
+	) {}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'id'           => $this->id,
+			'type'         => $this->type,
+			'value'        => $this->value,
+			'isocode'      => $this->isocode,
+			'translations' => $this->translations->getCreateData(),
+		];
+	}
+
+	/* getters and setters */
 
 	public function getId(): int
 	{

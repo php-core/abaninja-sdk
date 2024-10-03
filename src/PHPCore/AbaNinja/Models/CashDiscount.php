@@ -11,26 +11,32 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class CashDiscount extends Model
 {
-	protected int $days;
-	protected string $percentage;
+	public function __construct(
+		protected ?int              $days = null,
+		protected null|float|string $percentage = null,
+	) {}
 
-	public function getDays(): int
+
+
+	/* getters and setters */
+
+	public function getDays(): ?int
 	{
 		return $this->days;
 	}
 
-	public function setDays(int $days): CashDiscount
+	public function setDays(?int $days): CashDiscount
 	{
 		$this->days = $days;
 		return $this;
 	}
 
-	public function getPercentage(): string
+	public function getPercentage(): float|string|null
 	{
 		return $this->percentage;
 	}
 
-	public function setPercentage(string $percentage): CashDiscount
+	public function setPercentage(float|string|null $percentage): CashDiscount
 	{
 		$this->percentage = $percentage;
 		return $this;

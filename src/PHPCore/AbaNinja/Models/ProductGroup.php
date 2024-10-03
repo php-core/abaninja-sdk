@@ -16,23 +16,26 @@ class ProductGroup extends Model
 		return 'product-groups';
 	}
 
-	protected string $uuid;
-	protected int $groupNumber;
-	protected int $bookingAccountNumber;
-	protected bool $isArchived;
-	protected bool $isDeletable;
-	protected ProductGroupTranslations $translations;
+	public function __construct(
+		protected int                      $groupNumber,
+		protected ProductGroupTranslations $translations,
+		protected null|int|string                    $bookingAccountNumber = null,
 
-	public function getBookingAccountNumber(): int
+		protected ?string                  $uuid = null,
+		protected bool                     $isArchived = false,
+		protected bool                     $isDeletable = true
+	) {}
+
+	public function getCreateData(array $extraData = []): array
 	{
-		return $this->bookingAccountNumber;
+		return [
+			'groupNumber'          => $this->groupNumber,
+			'bookingAccountNumber' => $this->bookingAccountNumber,
+			'translations'         => $this->translations->getCreateData(),
+		];
 	}
 
-	public function setBookingAccountNumber(int $bookingAccountNumber): ProductGroup
-	{
-		$this->bookingAccountNumber = $bookingAccountNumber;
-		return $this;
-	}
+	/* getters and setters */
 
 	public function getGroupNumber(): int
 	{
@@ -86,6 +89,17 @@ class ProductGroup extends Model
 	public function setUuid(string $uuid): ProductGroup
 	{
 		$this->uuid = $uuid;
+		return $this;
+	}
+
+	public function getBookingAccountNumber(): int|string|null
+	{
+		return $this->bookingAccountNumber;
+	}
+
+	public function setBookingAccountNumber(int|string|null $bookingAccountNumber): ProductGroup
+	{
+		$this->bookingAccountNumber = $bookingAccountNumber;
 		return $this;
 	}
 }

@@ -48,4 +48,15 @@ class Contact extends Model
 		$this->value = $value;
 		return $this;
 	}
+
+	/* create data */
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'type'    => $this->type,
+			'value'   => $this->value,
+			'primary' => $this->primary,
+		];
+	}
 }

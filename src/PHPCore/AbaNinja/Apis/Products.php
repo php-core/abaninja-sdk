@@ -9,6 +9,7 @@ namespace PHPCore\AbaNinja\Apis;
 
 use PHPCore\AbaNinja\Classes\Api;
 use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 use PHPCore\AbaNinja\Interfaces\IModel;
 use PHPCore\AbaNinja\Models\Product;
@@ -77,5 +78,18 @@ class Products extends Api
 		return $this->__list(ProductGroup::class, [
 			'onlyArchived' => $onlyArchived,
 		]);
+	}
+
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function create(Product|ProductGroup $productOrGroup): Product|ProductGroup|IModel
+	{
+		return $this->__create(
+			$productOrGroup,
+			$productOrGroup::getResourceUri(),
+		);
 	}
 }

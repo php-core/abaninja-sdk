@@ -9,25 +9,51 @@ namespace PHPCore\AbaNinja\Models;
 
 use DateTime;
 use PHPCore\AbaNinja\Classes\DocumentsModel;
+use PHPCore\AbaNinja\Enums\SentStatus;
 
 class Template extends DocumentsModel
 {
-
 	public static function getResourceUri(): string
 	{
 		return 'templates';
 	}
 
-	protected PaymentInstructions $paymentInstrucations; // they have this weird typo here... :/
+	public function __construct(
+		protected bool                 $isTemplate = false,
+		protected ?string              $documentTotal = null,
+		protected ?string              $reference = null,
+		protected ?string              $currencyCode = null,
 
-	/** @var CashDiscount[] $cashDiscounts */
-	protected array $cashDiscounts;
+		protected ?PaymentInstructions $paymentInstrucations = null, // they have this weird typo here... :/
+		/** @var CashDiscount[] $cashDiscounts */
+		protected array                $cashDiscounts = [],
+		protected ?DateTime            $dueDate = null,
+		protected ?DateTime            $invoiceDate = null,
+		protected ?DateTime            $deliverDate = null,
+		protected bool                 $isVariantInvoice = false,
 
-	protected DateTime $dueDate;
-	protected DateTime $invoiceDate;
-	protected DateTime $deliverDate;
-
-	protected bool $isVariantInvoice;
+		protected ?string              $title = null,
+		protected ?string              $terms = null,
+		protected ?string              $publicNotes = null,
+		protected ?string              $footerText = null,
+		protected ?Receiver            $receiver = null,
+		/** @var Position[] $positions */
+		protected array                $positions = [],
+		protected ?string              $customField1 = null,
+		protected ?string              $customField2 = null,
+		protected ?string              $customField3 = null,
+		protected ?string              $customField4 = null,
+		protected ?DateTime            $updatedAt = null,
+		protected bool                 $isArchived = false,
+		protected bool                 $isCancelled = false,
+		protected bool                 $pricesIncludeVat = false,
+		protected ?int                 $id = null,
+		protected ?string              $uuid = null,
+		protected ?SentStatus          $sentStatus = null,
+	)
+	{
+		parent::__construct();
+	}
 
 	public function getCashDiscounts(): array
 	{

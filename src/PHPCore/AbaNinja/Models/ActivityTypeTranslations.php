@@ -11,10 +11,24 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class ActivityTypeTranslations extends Model
 {
-	protected ?ActivityTypeTranslation $de;
-	protected ?ActivityTypeTranslation $en;
-	protected ?ActivityTypeTranslation $fr;
-	protected ?ActivityTypeTranslation $it;
+	public function __construct(
+		protected ?ActivityTypeTranslation $de = null,
+		protected ?ActivityTypeTranslation $en = null,
+		protected ?ActivityTypeTranslation $fr = null,
+		protected ?ActivityTypeTranslation $it = null
+	) {}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'de' => $this->de?->getCreateData() ?? ['description' => ''],
+			'en' => $this->en?->getCreateData() ?? ['description' => ''],
+			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
+			'it' => $this->it?->getCreateData() ?? ['description' => ''],
+		];
+	}
+
+	/* getters and setters */
 
 	public function getDe(): ?ActivityTypeTranslation
 	{

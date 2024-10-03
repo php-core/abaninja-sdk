@@ -11,50 +11,64 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class ProductPropertyTranslations extends Model
 {
-	protected ProductPropertyTranslation $de;
-	protected ProductPropertyTranslation $en;
-	protected ProductPropertyTranslation $fr;
-	protected ProductPropertyTranslation $it;
+	public function __construct(
+		protected ?ProductPropertyTranslation $de = null,
+		protected ?ProductPropertyTranslation $en = null,
+		protected ?ProductPropertyTranslation $fr = null,
+		protected ?ProductPropertyTranslation $it = null,
+	) {}
 
-	public function getDe(): ProductPropertyTranslation
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'de' => $this->de?->getCreateData() ?? ['description' => ''],
+			'en' => $this->en?->getCreateData() ?? ['description' => ''],
+			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
+			'it' => $this->it?->getCreateData() ?? ['description' => ''],
+		];
+	}
+
+	/* getters and setters */
+
+	public function getDe(): ?ProductPropertyTranslation
 	{
 		return $this->de;
 	}
 
-	public function setDe(ProductPropertyTranslation $de): ProductPropertyTranslations
+	public function setDe(?ProductPropertyTranslation $de): ProductPropertyTranslations
 	{
 		$this->de = $de;
 		return $this;
 	}
 
-	public function getEn(): ProductPropertyTranslation
+	public function getEn(): ?ProductPropertyTranslation
 	{
 		return $this->en;
 	}
 
-	public function setEn(ProductPropertyTranslation $en): ProductPropertyTranslations
+	public function setEn(?ProductPropertyTranslation $en): ProductPropertyTranslations
 	{
 		$this->en = $en;
 		return $this;
 	}
 
-	public function getFr(): ProductPropertyTranslation
+	public function getFr(): ?ProductPropertyTranslation
 	{
 		return $this->fr;
 	}
 
-	public function setFr(ProductPropertyTranslation $fr): ProductPropertyTranslations
+	public function setFr(?ProductPropertyTranslation $fr): ProductPropertyTranslations
 	{
 		$this->fr = $fr;
 		return $this;
 	}
 
-	public function getIt(): ProductPropertyTranslation
+	public function getIt(): ?ProductPropertyTranslation
 	{
 		return $this->it;
 	}
 
-	public function setIt(ProductPropertyTranslation $it): ProductPropertyTranslations
+	public function setIt(?ProductPropertyTranslation $it): ProductPropertyTranslations
 	{
 		$this->it = $it;
 		return $this;

@@ -16,11 +16,14 @@ class Unit extends Model
 		return 'units';
 	}
 
+	public function __construct(
+		protected bool             $active,
+		protected UnitTranslations $translations,
+		protected ?string          $isocode = null,
+	) {}
+
 	protected int $id;
 	protected string $uuid;
-	protected string $isocode;
-	protected UnitTranslations $translations;
-	protected bool $active;
 
 	public function isActive(): bool
 	{

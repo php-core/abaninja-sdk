@@ -12,20 +12,140 @@ use PHPCore\AbaNinja\Enums\PositionKind;
 
 class Position extends Model
 {
-	protected PositionKind $kind;
-	protected int $positionNumber;
-	protected ?string $productNumber = null;
-	protected ?string $productDescription = null;
-	protected ?string $title = null;
-	protected ?float $quantity = null;
-	protected ?string $unitCode = null;
-	protected ?float $singlePrice = null;
-	protected ?float $positionTotal = null;
-	protected ?Discount $discounts = null;
-	protected Vat $vat;
+	public function __construct(
+		protected PositionKind $kind,
+		protected int          $positionNumber,
+		protected ?string      $productNumber = null,
+		protected ?string      $productDescription = null,
+		protected ?string      $title = null,
+		protected ?string      $text = null,
+		protected ?float       $quantity = 1,
+		protected ?string      $unitCode = 'C62',
+		protected ?float       $singlePrice = null,
+		protected ?float       $positionTotal = null,
+		protected ?Discount    $discounts = null,
+		protected ?Vat         $vat = null,
+		/** @var self[] $items */
+		protected array        $items = [],
+		protected bool         $showCollapsed = true,
+	) {}
 
-	/** @var self[] $items */
-	protected array $items = [];
+	public function getCreateData(array $extraData = []): array
+	{
+		return array_merge([
+			'kind'           => $this->kind->value,
+			'positionNumber' => $this->positionNumber,
+		], match ($this->kind) {
+			PositionKind::Product => [
+				'productNumber'      => $this->productNumber,
+				'productDescription' => $this->productDescription,
+				'quantity'           => $this->quantity,
+				'unitCode'           => $this->unitCode,
+				'singlePrice'        => $this->singlePrice,
+				'positionTotal'      => $this->positionTotal,
+				'discounts'          => $this->discounts->getCreateData(),
+				'vat'                => $this->vat->getCreateData(),
+			],
+			PositionKind::Subtitle => [
+				'title' => $this->title,
+			],
+			PositionKind::Text => [
+				'text' => $this->text,
+			],
+			PositionKind::SectionTotal, PositionKind::Divider => [],
+			PositionKind::Group => [
+				'title'         => $this->title,
+				'items'         => self::getCreateDataArray($this->items),
+				'showCollapsed' => $this->showCollapsed,
+			]
+		});
+	}
+
+	/* static create helpers */
+
+	public static function createProductPosition(
+		int       $positionNumber,
+		string    $productNumber,
+		string    $productDescription,
+		float     $singlePrice,
+		float     $positionTotal,
+		float     $quantity = 1,
+		string    $unitCode = 'C62',
+		?Discount $discount = null,
+		?Vat      $vat = null,
+	): Position
+	{
+		return new self(
+			kind              : PositionKind::Product,
+			positionNumber    : $positionNumber,
+			productNumber     : $productNumber,
+			productDescription: $productDescription,
+			quantity          : $quantity,
+			unitCode          : $unitCode,
+			singlePrice       : $singlePrice,
+			positionTotal     : $positionTotal,
+			discounts         : $discount,
+			vat               : $vat,
+		);
+	}
+
+	public static function createSubtitlePosition(
+		int    $positionNumber,
+		string $title
+	): self
+	{
+		return new self(
+			kind          : PositionKind::Subtitle,
+			positionNumber: $positionNumber,
+			title         : $title
+		);
+	}
+
+	public static function createTextPosition(
+		int    $positionNumber,
+		string $text
+	): self
+	{
+		return new self(
+			kind          : PositionKind::Subtitle,
+			positionNumber: $positionNumber,
+			text          : $text
+		);
+	}
+
+	public static function createSectionTotalPosition(int $positionNumber): self
+	{
+		return new self(
+			kind          : PositionKind::SectionTotal,
+			positionNumber: $positionNumber
+		);
+	}
+
+	public static function createDividerPosition(int $positionNumber): self
+	{
+		return new self(
+			kind          : PositionKind::Divider,
+			positionNumber: $positionNumber
+		);
+	}
+
+	public static function createGroupPosition(
+		int    $positionNumber,
+		string $title,
+		array  $items,
+		bool   $showCollapsed = true,
+	): self
+	{
+		return new self(
+			kind          : PositionKind::Group,
+			positionNumber: $positionNumber,
+			title         : $title,
+			items         : $items,
+			showCollapsed : $showCollapsed
+		);
+	}
+
+	/* getters and setters */
 
 	public function getDiscounts(): ?Discount
 	{

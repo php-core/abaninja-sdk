@@ -16,13 +16,16 @@ class Holiday extends Model
 		return 'holidays';
 	}
 
-	protected ?string $uuid;
-	protected \DateTime $date;
-	protected bool $halfDay;
-	protected ?string $countryCode;
-	protected ?string $state;
-	protected ?string $name;
-	protected HolidayTranslations $translations;
+	public function __construct(
+		protected \DateTime            $date,
+		protected ?string              $name = null,
+		protected ?string              $countryCode = null,
+		protected ?string              $state = null,
+		protected bool                 $halfDay = false,
+		protected ?HolidayTranslations $translations = null,
+		protected ?string              $uuid = null
+	) {}
+
 
 	public function getCountryCode(): ?string
 	{

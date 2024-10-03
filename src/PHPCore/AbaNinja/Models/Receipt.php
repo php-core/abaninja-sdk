@@ -9,22 +9,51 @@ namespace PHPCore\AbaNinja\Models;
 
 use DateTime;
 use PHPCore\AbaNinja\Classes\DocumentsModel;
+use PHPCore\AbaNinja\Enums\SentStatus;
 
 class Receipt extends DocumentsModel
 {
-
 	public static function getResourceUri(): string
 	{
 		return 'receipts';
 	}
 
-	protected string $number;
-	protected DateTime $invoiceDate;
-	protected DateTime $dueDate;
-	protected DateTime $deliverDate;
-	protected bool $archived;
-	protected bool $cancelled;
-	protected int $balance;
+	public function __construct(
+		protected bool        $isTemplate = false,
+		protected ?string     $documentTotal = null,
+		protected ?string     $reference = null,
+		protected ?string     $currencyCode = null,
+
+		protected ?string     $number = null,
+		protected ?DateTime   $invoiceDate = null,
+		protected ?DateTime   $dueDate = null,
+		protected ?DateTime   $deliverDate = null,
+		protected bool        $archived = false,
+		protected bool        $cancelled = false,
+		protected int         $balance = 0,
+
+		protected ?string     $title = null,
+		protected ?string     $terms = null,
+		protected ?string     $publicNotes = null,
+		protected ?string     $footerText = null,
+		protected ?Receiver   $receiver = null,
+		/** @var Position[] $positions */
+		protected array       $positions = [],
+		protected ?string     $customField1 = null,
+		protected ?string     $customField2 = null,
+		protected ?string     $customField3 = null,
+		protected ?string     $customField4 = null,
+		protected ?DateTime   $updatedAt = null,
+		protected bool        $isArchived = false,
+		protected bool        $isCancelled = false,
+		protected bool        $pricesIncludeVat = false,
+		protected ?int        $id = null,
+		protected ?string     $uuid = null,
+		protected ?SentStatus $sentStatus = null,
+	)
+	{
+		parent::__construct();
+	}
 
 	/** @var CashDiscount[] $cashDiscounts */
 	protected array $cashDiscounts;

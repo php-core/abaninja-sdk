@@ -10,6 +10,7 @@ namespace PHPCore\AbaNinja\Models;
 use DateTime;
 use PHPCore\AbaNinja\Classes\DocumentsModel;
 use PHPCore\AbaNinja\Enums\DunningLevel;
+use PHPCore\AbaNinja\Enums\SentStatus;
 
 class Invoice extends DocumentsModel
 {
@@ -18,18 +19,41 @@ class Invoice extends DocumentsModel
 		return 'invoices';
 	}
 
-	protected string $invoiceNumber;
+	public function __construct(
+		protected bool         $isTemplate = false,
+		protected ?string      $documentTotal = null,
+		protected ?string      $reference = null,
+		protected ?string      $currencyCode = null,
 
-	protected DateTime $invoiceDate;
-	protected ?DateTime $deliveryDate = null;
+		protected ?string      $invoiceNumber = null,
+		protected ?DateTime    $invoiceDate = null,
+		protected ?DateTime    $deliveryDate = null,
+		protected ?DateTime    $dueDate = null,
+		protected bool         $isImported = false,
+		protected string       $openAmount = '',
+		protected DunningLevel $dunningLevel = DunningLevel::NoDunning,
 
-	protected ?DateTime $dueDate = null;
-
-	protected bool $isImported = false;
-
-	protected string $openAmount = '';
-
-	protected DunningLevel $dunningLevel;
+		protected ?string      $title = null,
+		protected ?string      $terms = null,
+		protected ?string      $publicNotes = null,
+		protected ?string      $footerText = null,
+		protected ?Receiver    $receiver = null,
+		/** @var Position[] $positions */
+		protected array        $positions = [],
+		protected ?string      $customField1 = null,
+		protected ?string      $customField2 = null,
+		protected ?string      $customField3 = null,
+		protected ?string      $customField4 = null,
+		protected ?DateTime    $updatedAt = null,
+		protected bool         $isArchived = false,
+		protected bool         $isCancelled = false,
+		protected bool         $pricesIncludeVat = false,
+		protected ?int         $id = null,
+		protected ?string      $uuid = null,
+		protected ?SentStatus  $sentStatus = null,
+	) {
+		parent::__construct();
+	}
 
 	public function getDeliveryDate(): ?DateTime
 	{

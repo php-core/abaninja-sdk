@@ -8,6 +8,7 @@
 namespace PHPCore\AbaNinja\Models;
 
 use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
 class ActivityType extends Model
 {
@@ -16,19 +17,45 @@ class ActivityType extends Model
 		return 'settings/activity-types';
 	}
 
-	protected string $uuid;
-	protected string $activityTypeMasterUuid;
-	protected string $activityNumber;
-	protected string $unit;
-	protected bool $isBillable;
-	protected bool $isHoliday;
-	protected int $activityGroup;
-	protected bool $isTimecredit;
-	protected bool $isShortTimeWork;
-	protected bool $isFavorite;
-	protected bool $used;
-	protected string $description;
-	protected ActivityTypeTranslations $translations;
+	public function __construct(
+		protected string                    $activityNumber,
+		protected string                    $unit,
+		protected int                       $activityGroup,
+		protected ?ActivityTypeTranslations $translations,
+		protected bool                      $isShortTimeWork = false,
+		protected bool                      $isHoliday = false,
+		protected bool                      $isBillable = false,
+		protected bool                      $isCount = false,
+		protected bool                      $isFavorite = false,
+		protected ?bool                     $isTimecredit = null,
+	) {}
+
+
+	protected ?string $activityTypeMasterUuid = null;
+	protected ?string $description = null;
+	protected ?string $uuid = null;
+	protected bool $used = false;
+
+	/**
+	 * @throws RuntimeException
+	 */
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'activityNumber'  => $this->activityNumber,
+			'unit'            => $this->unit,
+			'isCount'         => $this->isCount,
+			'isBillable'      => $this->isBillable,
+			'isHoliday'       => $this->isHoliday,
+			'activityGroup'   => $this->activityGroup,
+			'isTimeCredit'    => $this->isTimecredit,
+			'isShortTimeWork' => $this->isShortTimeWork,
+			'isFavorite'      => $this->isFavorite,
+			'translations'    => $this->translations->getCreateData(),
+		];
+	}
+
+	/* getters and setters */
 
 	public function getActivityGroup(): int
 	{

@@ -11,28 +11,43 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class Vat extends Model
 {
-	protected float $percentage;
-	protected string $amount;
+	public function __construct(
+		protected ?float  $percentage = null,
+		protected ?string $amount = null
+	) {}
 
-	public function getPercentage(): float
+	public function getCreateData(array $extraData = []): array
 	{
-		return $this->percentage;
+		return isset($this->percentage)
+			? [
+				'percentage' => $this->percentage,
+			]
+			: [
+				'amount' => $this->amount,
+			];
 	}
 
-	public function setPercentage(float $percentage): Vat
-	{
-		$this->percentage = $percentage;
-		return $this;
-	}
+	/* getters and setters */
 
-	public function getAmount(): string
+	public function getAmount(): ?string
 	{
 		return $this->amount;
 	}
 
-	public function setAmount(string $amount): Vat
+	public function setAmount(?string $amount): Vat
 	{
 		$this->amount = $amount;
+		return $this;
+	}
+
+	public function getPercentage(): ?float
+	{
+		return $this->percentage;
+	}
+
+	public function setPercentage(?float $percentage): Vat
+	{
+		$this->percentage = $percentage;
 		return $this;
 	}
 }

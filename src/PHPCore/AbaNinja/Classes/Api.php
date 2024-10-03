@@ -96,7 +96,7 @@ class Api
 			HttpMethod::PUT,
 			HttpMethod::PATCH,
 		])) {
-			$options['data'] = json_encode($data);
+			$options['json'] = $data;
 		}
 
 		try {
@@ -206,7 +206,7 @@ class Api
 	 * @return IModel[]
 	 * @throws ApiException|RuntimeException
 	 */
-	public function  __paginate(string|IModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
+	public function __paginate(string|IModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
 	{
 		$data['page'] = $page;
 		if (!empty($limit)) {
@@ -242,15 +242,29 @@ class Api
 			: throw ApiResponseException::fromResponse($response);
 	}
 
-	public function __create(IModel $model): IModel
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function __create(
+		IModel $model,
+		string $createUri = null,
+		array  $extraData = [],
+		array  $options = []
+	): IModel
 	{
 		$response = $this->post(
-			$model::getResourceUri(),
-			$data,
+			(empty($createUri) ? $model::getResourceUri() : $createUri),
+			$model->getCreateData($extraData),
 			$options
 		);
-		return $response->getHttpCode() === 200
-			? $model::fromMany((empty($dataKey = self::getDataKey()) ? $response->getResponse() : $response->getResponse()->{$dataKey}))
+		return ($response->getHttpCode() === 200 || $response->getHttpCode() === 201)
+			? $model::from(
+				(empty($dataKey = self::getDataKey())
+					? $response->getResponse()
+					: $response->getResponse()->{$dataKey})
+			)
 			: throw ApiResponseException::fromResponse($response);
 	}
 }

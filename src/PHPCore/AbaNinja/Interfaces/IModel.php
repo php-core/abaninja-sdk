@@ -8,6 +8,7 @@
 namespace PHPCore\AbaNinja\Interfaces;
 
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
+use stdClass;
 
 interface IModel
 {
@@ -17,7 +18,7 @@ interface IModel
 	 */
 	public static function getResourceUri(): string;
 
-	public function __construct(array $fromData = []);
+	public static function createFromData(array|stdClass $fromData = []): static;
 
 	public static function from(array $fromData, bool $fromMany = false): static;
 
@@ -29,4 +30,6 @@ interface IModel
 	 * @return static[]
 	 */
 	public static function fromMany(mixed $fromListData): array;
+
+	public function getCreateData(array $extraData = []): array;
 }

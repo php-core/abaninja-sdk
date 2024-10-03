@@ -9,8 +9,10 @@ namespace PHPCore\AbaNinja\Apis;
 
 use DateTime;
 use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Classes\DocumentsModel;
 use PHPCore\AbaNinja\Enums\DocumentAction;
 use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 use PHPCore\AbaNinja\Interfaces\IModel;
 use PHPCore\AbaNinja\Models\ContractNote;
@@ -45,6 +47,19 @@ class Documents extends Api
 	{
 		$response = $this->get($model::getResourceUri() . '/' . $documentUuid . '/actions');
 		return DocumentAction::fromMany($response->getResponse()->data);
+	}
+
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function create(DocumentsModel $model): IModel|DocumentsModel
+	{
+		return $this->__create(
+			$model,
+			$model::getResourceUri(),
+		);
 	}
 
 	/**

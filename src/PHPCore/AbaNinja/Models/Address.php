@@ -11,14 +11,34 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class Address extends Model
 {
-	protected ?string $address = null;
-	protected ?string $streetNumber = null;
-	protected ?string $extension = null;
-	protected ?string $additionalField = null;
-	protected ?string $state = null;
-	protected ?string $city = null;
-	protected ?string $zipCode = null;
-	protected string $countryCode = 'CH';
+	public function __construct(
+		protected ?string $address = null,
+		protected ?string $streetNumber = null,
+		protected ?string $extension = null,
+		protected ?string $additionalField = null,
+		protected ?string $state = null,
+		protected ?string $city = null,
+		protected ?string $zipCode = null,
+		protected string  $countryCode = 'CH',
+		protected ?string $uuid = null
+	) {}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'uuid'             => $this->uuid,
+			'address'          => $this->address,
+			'street_number'    => $this->streetNumber,
+			'extension'        => $this->extension,
+			'additional_field' => $this->additionalField,
+			'city'             => $this->city,
+			'zip_code'         => $this->zipCode,
+			'country_code'     => $this->countryCode,
+			'state'            => $this->state,
+		];
+	}
+
+	/* getters and setters */
 
 	public function getAdditionalField(): ?string
 	{

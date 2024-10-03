@@ -10,6 +10,8 @@ namespace PHPCore\AbaNinja\Enums;
 enum PositionKind: string
 {
 	case Product = 'product';
+	case Subtitle = 'subtitle';
+	case Text = 'text';
 	case SectionTotal = 'section_total';
 	case Divider = 'divider';
 	case Group = 'group';

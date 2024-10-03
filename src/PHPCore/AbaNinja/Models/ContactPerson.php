@@ -95,4 +95,16 @@ class ContactPerson extends Model
 		$this->uuid = $uuid;
 		return $this;
 	}
+
+	/* create data */
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'first_name' => $this->firstName,
+			'last_name'  => $this->lastName,
+			'salutation' => $this->salutation,
+			'contacts'   => self::getCreateDataArray($this->contacts),
+		];
+	}
 }

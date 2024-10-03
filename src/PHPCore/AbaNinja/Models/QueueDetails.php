@@ -12,9 +12,11 @@ use PHPCore\AbaNinja\Enums\QueueStatus;
 
 class QueueDetails extends Model
 {
-	protected QueueStatus $status;
-	protected string $message;
-	protected Invoice $invoice;
+	public function __construct(
+		protected QueueStatus $status,
+		protected string      $message,
+		protected Invoice     $invoice,
+	) {}
 
 	public function getInvoice(): Invoice
 	{

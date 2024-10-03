@@ -11,9 +11,11 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class UnitTranslation extends Model
 {
-	protected string $unit;
-	protected string $description;
-	protected ?string $unitPlural = null;
+	public function __construct(
+		protected string  $unit,
+		protected string  $description = '',
+		protected ?string $unitPlural = null
+	) {}
 
 	public function getDescription(): string
 	{

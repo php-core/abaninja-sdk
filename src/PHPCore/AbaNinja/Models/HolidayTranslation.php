@@ -11,7 +11,9 @@ use PHPCore\AbaNinja\Classes\Model;
 
 class HolidayTranslation extends Model
 {
-	protected string $name;
+	public function __construct(
+		protected ?string $name = null
+	) {}
 
 	public function getName(): string
 	{

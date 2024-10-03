@@ -8,6 +8,7 @@
 namespace PHPCore\AbaNinja\Models;
 
 use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
 class BankAccount extends Model
 {
@@ -16,134 +17,201 @@ class BankAccount extends Model
 		return 'bank-accounts';
 	}
 
-	protected string $uuid;
-	protected string $name;
-	protected string $bankName;
-	protected string $bankAddress;
-	protected string $bankCity;
-	protected string $iban;
-	protected string $bic;
-	protected string $currencyCode;
-	protected QRBill $qrBill;
-	protected bool $isActive;
-	protected bool $isDefault;
+	public function __construct(
+		protected string  $name,
+		protected string  $bankName,
+		protected string  $bankAddress,
+		protected string  $bankCity,
+		protected string  $currencyCode,
+		protected string  $iban,
+		protected ?string $bic = null,
+		protected ?QRBill $qrBill = null,
+		protected bool    $isActive = true,
+		protected bool    $isDefault = false,
+		protected ?string $uuid = null
+	) {}
 
-	public function getBankAddress(): string
+	/**
+	 * @throws RuntimeException
+	 */
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'name'         => $this->name,
+			'bankName'     => $this->bankName,
+			'bankAddress'  => $this->bankAddress,
+			'bankCity'     => $this->bankCity,
+			'currencyCode' => $this->currencyCode,
+			'iban'         => $this->iban,
+			'bic'          => $this->bic,
+			'qrBill'       => $this->qrBill?->getCreateData(),
+			'isActive'     => $this->isActive,
+			'isDefault'    => $this->isDefault,
+		];
+	}
+
+	/* getters and setters */
+
+	public
+	function getBankAddress(): string
 	{
 		return $this->bankAddress;
 	}
 
-	public function setBankAddress(string $bankAddress): BankAccount
+	public
+	function setBankAddress(
+		string $bankAddress
+	): BankAccount
 	{
 		$this->bankAddress = $bankAddress;
 		return $this;
 	}
 
-	public function getBankCity(): string
+	public
+	function getBankCity(): string
 	{
 		return $this->bankCity;
 	}
 
-	public function setBankCity(string $bankCity): BankAccount
+	public
+	function setBankCity(
+		string $bankCity
+	): BankAccount
 	{
 		$this->bankCity = $bankCity;
 		return $this;
 	}
 
-	public function getBankName(): string
+	public
+	function getBankName(): string
 	{
 		return $this->bankName;
 	}
 
-	public function setBankName(string $bankName): BankAccount
+	public
+	function setBankName(
+		string $bankName
+	): BankAccount
 	{
 		$this->bankName = $bankName;
 		return $this;
 	}
 
-	public function getBic(): string
+	public
+	function getBic(): string
 	{
 		return $this->bic;
 	}
 
-	public function setBic(string $bic): BankAccount
+	public
+	function setBic(
+		string $bic
+	): BankAccount
 	{
 		$this->bic = $bic;
 		return $this;
 	}
 
-	public function getCurrencyCode(): string
+	public
+	function getCurrencyCode(): string
 	{
 		return $this->currencyCode;
 	}
 
-	public function setCurrencyCode(string $currencyCode): BankAccount
+	public
+	function setCurrencyCode(
+		string $currencyCode
+	): BankAccount
 	{
 		$this->currencyCode = $currencyCode;
 		return $this;
 	}
 
-	public function getIban(): string
+	public
+	function getIban(): string
 	{
 		return $this->iban;
 	}
 
-	public function setIban(string $iban): BankAccount
+	public
+	function setIban(
+		string $iban
+	): BankAccount
 	{
 		$this->iban = $iban;
 		return $this;
 	}
 
-	public function isActive(): bool
+	public
+	function isActive(): bool
 	{
 		return $this->isActive;
 	}
 
-	public function setIsActive(bool $isActive): BankAccount
+	public
+	function setIsActive(
+		bool $isActive
+	): BankAccount
 	{
 		$this->isActive = $isActive;
 		return $this;
 	}
 
-	public function isDefault(): bool
+	public
+	function isDefault(): bool
 	{
 		return $this->isDefault;
 	}
 
-	public function setIsDefault(bool $isDefault): BankAccount
+	public
+	function setIsDefault(
+		bool $isDefault
+	): BankAccount
 	{
 		$this->isDefault = $isDefault;
 		return $this;
 	}
 
-	public function getName(): string
+	public
+	function getName(): string
 	{
 		return $this->name;
 	}
 
-	public function setName(string $name): BankAccount
+	public
+	function setName(
+		string $name
+	): BankAccount
 	{
 		$this->name = $name;
 		return $this;
 	}
 
-	public function getQrBill(): QRBill
+	public
+	function getQrBill(): QRBill
 	{
 		return $this->qrBill;
 	}
 
-	public function setQrBill(QRBill $qrBill): BankAccount
+	public
+	function setQrBill(
+		QRBill $qrBill
+	): BankAccount
 	{
 		$this->qrBill = $qrBill;
 		return $this;
 	}
 
-	public function getUuid(): string
+	public
+	function getUuid(): string
 	{
 		return $this->uuid;
 	}
 
-	public function setUuid(string $uuid): BankAccount
+	public
+	function setUuid(
+		string $uuid
+	): BankAccount
 	{
 		$this->uuid = $uuid;
 		return $this;

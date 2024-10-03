@@ -15,12 +15,13 @@ class Queue extends Model
 	{
 		return 'queue';
 	}
-	
 
-	protected string $uuid;
-	protected int $total;
-	protected bool $successful;
-	protected bool $failed;
+	public function __construct(
+		protected string $uuid,
+		protected int    $total,
+		protected bool   $successful,
+		protected bool   $failed,
+	) {}
 
 	/** @var QueueDetails[] $details */
 	protected array $details;
