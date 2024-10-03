@@ -266,6 +266,21 @@ class Model implements IModel
 		}, $arrayOfModel);
 	}
 
+	public static function get(string $uuid): static
+	{
+		throw new \RuntimeException(__FUNCTION__ . ' is not implemented in ' . static::class);
+	}
+
+	public static function list(array $filters = []): array
+	{
+		throw new \RuntimeException(__FUNCTION__ . ' is not implemented in ' . static::class);
+	}
+
+	public function save(): static
+	{
+		throw new \RuntimeException(__FUNCTION__ . ' is not implemented in ' . static::class);
+	}
+
 	public function getUuid(): ?string
 	{
 		return property_exists($this, $uuidKey = static::getUuidKey()) && !empty($uuid = $this->{$uuidKey})

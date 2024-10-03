@@ -54,7 +54,7 @@ class ProductGroup extends Model
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public static function get(string $uuid): self
+	public static function get(string $uuid): static
 	{
 		return AbaNinja::ProductsApi()->getProductGroup($uuid);
 	}
@@ -63,9 +63,11 @@ class ProductGroup extends Model
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public static function list(bool $onlyArchived = false): array
+	public static function list(array $filters = []): array
 	{
-		return AbaNinja::ProductsApi()->listProductGroups($onlyArchived);
+		return AbaNinja::ProductsApi()->listProductGroups(
+			!empty($filters['onlyArchived'])
+		);
 	}
 
 	/* API shorthand functions */
@@ -75,7 +77,7 @@ class ProductGroup extends Model
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function save(): self
+	public function save(): static
 	{
 		return AbaNinja::ProductsApi()->update($this);
 	}

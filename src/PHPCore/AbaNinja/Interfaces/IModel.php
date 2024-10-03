@@ -33,6 +33,12 @@ interface IModel
 	 */
 	public static function fromMany(mixed $fromListData): array;
 
+	public static function get(string $uuid): static;
+
+	public static function list(array $filters = []): array;
+
+	public function save(): static;
+
 	public function getUuid(): ?string;
 
 	public function getCreateData(array $extraData = []): array;

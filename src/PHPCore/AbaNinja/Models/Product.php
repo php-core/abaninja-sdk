@@ -71,25 +71,21 @@ class Product extends Model
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public static function get(string $uuid): self
+	public static function get(string $uuid): static
 	{
 		return AbaNinja::ProductsApi()->getProduct($uuid);
 	}
 
 	/**
-	 * @throws RuntimeException
 	 * @throws ApiException
+	 * @throws RuntimeException
 	 */
-	public static function list(
-		int  $page = 1,
-		?int $limit = null,
-		bool $isArchived = false
-	): array
+	public static function list(array $filters = []): array
 	{
 		return AbaNinja::ProductsApi()->listProducts(
-			$page,
-			$limit,
-			$isArchived
+			(empty($filters['page']) ? 1 : $filters['page']),
+			$filters['limit'] ?? null,
+			$filters['isArchived'] ?? false,
 		);
 	}
 
@@ -100,7 +96,7 @@ class Product extends Model
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function save(): self
+	public function save(): static
 	{
 		return AbaNinja::ProductsApi()->update($this);
 	}
