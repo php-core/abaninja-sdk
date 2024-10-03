@@ -7,7 +7,10 @@
 
 namespace PHPCore\AbaNinja\Models;
 
+use PHPCore\AbaNinja\AbaNinja;
 use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
 class ProductGroup extends Model
 {
@@ -19,7 +22,7 @@ class ProductGroup extends Model
 	public function __construct(
 		protected int                      $groupNumber,
 		protected ProductGroupTranslations $translations,
-		protected null|int|string                    $bookingAccountNumber = null,
+		protected null|int|string          $bookingAccountNumber = null,
 
 		protected ?string                  $uuid = null,
 		protected bool                     $isArchived = false,
@@ -33,6 +36,35 @@ class ProductGroup extends Model
 			'bookingAccountNumber' => $this->bookingAccountNumber,
 			'translations'         => $this->translations->getCreateData(),
 		];
+	}
+
+	public static function create(
+		int                      $groupNumber,
+		ProductGroupTranslations $translations,
+		null|int|string          $bookingAccountNumber = null,
+	): static
+	{
+		return new static($groupNumber, $translations, $bookingAccountNumber);
+	}
+
+	/* static API shorthand functions */
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public static function get(string $uuid): self
+	{
+		return AbaNinja::ProductsApi()->getProductGroup($uuid);
+	}
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public static function list(bool $onlyArchived = false): array
+	{
+		return AbaNinja::ProductsApi()->listProductGroups($onlyArchived);
 	}
 
 	/* getters and setters */

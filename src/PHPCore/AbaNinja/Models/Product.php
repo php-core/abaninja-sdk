@@ -7,7 +7,9 @@
 
 namespace PHPCore\AbaNinja\Models;
 
+use PHPCore\AbaNinja\AbaNinja;
 use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Exceptions\ApiException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
 class Product extends Model
@@ -40,9 +42,6 @@ class Product extends Model
 		protected ?\DateTime           $archivedAt = null
 	) {}
 
-	/**
-	 * @throws RuntimeException
-	 */
 	public function getCreateData(array $extraData = []): array
 	{
 		return [
@@ -58,6 +57,34 @@ class Product extends Model
 			'taxRate'              => $this->taxRate,
 			'bookingAccountNumber' => $this->bookingAccountNumber,
 		];
+	}
+
+	/* static API shorthand functions */
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public static function get(string $uuid): self
+	{
+		return AbaNinja::ProductsApi()->getProduct($uuid);
+	}
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public static function list(
+		int  $page = 1,
+		?int $limit = null,
+		bool $isArchived = false
+	): array
+	{
+		return AbaNinja::ProductsApi()->listProducts(
+			$page,
+			$limit,
+			$isArchived
+		);
 	}
 
 	/* getters and setters */
