@@ -92,4 +92,17 @@ class Products extends Api
 			$productOrGroup::getResourceUri(),
 		);
 	}
+
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function update(Product|ProductGroup $productOrGroup): Product|ProductGroup|IModel
+	{
+		return $this->__update(
+			$productOrGroup,
+			$productOrGroup::getResourceUri(),
+		);
+	}
 }

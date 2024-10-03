@@ -12,6 +12,8 @@ use stdClass;
 
 interface IModel
 {
+	public static function getUuidKey(): ?string;
+
 	/**
 	 * @return string
 	 * @throws RuntimeException
@@ -31,5 +33,9 @@ interface IModel
 	 */
 	public static function fromMany(mixed $fromListData): array;
 
+	public function getUuid(): ?string;
+
 	public function getCreateData(array $extraData = []): array;
+
+	public function getUpdateData(array $extraData = []): array;
 }

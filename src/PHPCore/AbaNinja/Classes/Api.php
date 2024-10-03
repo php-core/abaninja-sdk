@@ -259,7 +259,34 @@ class Api
 			$model->getCreateData($extraData),
 			$options
 		);
-		return ($response->getHttpCode() === 200 || $response->getHttpCode() === 201)
+		return $response->getHttpCode() === 201
+			? $model::from(
+				(empty($dataKey = self::getDataKey())
+					? $response->getResponse()
+					: $response->getResponse()->{$dataKey})
+			)
+			: throw ApiResponseException::fromResponse($response);
+	}
+
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function __update(
+		IModel $model,
+		string $updateUri = null,
+		array  $extraData = [],
+		array  $options = []
+	)
+	{
+		$response = $this->patch(
+			(empty($updateUri) ? $model::getResourceUri() : $updateUri)
+			. '/' . $model->getUuid(),
+			$model->getUpdateData($extraData),
+			$options
+		);
+		return $response->getHttpCode() === 200
 			? $model::from(
 				(empty($dataKey = self::getDataKey())
 					? $response->getResponse()

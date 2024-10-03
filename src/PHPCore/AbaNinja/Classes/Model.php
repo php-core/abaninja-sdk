@@ -18,6 +18,11 @@ use Throwable;
 
 class Model implements IModel
 {
+	public static function getUuidKey(): ?string
+	{
+		return 'uuid';
+	}
+
 	/**
 	 * @throws RuntimeException
 	 */
@@ -261,8 +266,26 @@ class Model implements IModel
 		}, $arrayOfModel);
 	}
 
+	public function getUuid(): ?string
+	{
+		return property_exists($this, $uuidKey = static::getUuidKey()) && !empty($uuid = $this->{$uuidKey})
+			? $uuid
+			: null;
+	}
+
+	/**
+	 * @throws RuntimeException
+	 */
 	public function getCreateData(array $extraData = []): array
 	{
 		throw new RuntimeException(__FUNCTION__ . ' was not implemented for ' . static::class);
+	}
+
+	/**
+	 * @throws RuntimeException
+	 */
+	public function getUpdateData(array $extraData = []): array
+	{
+		return static::getCreateData($extraData);
 	}
 }

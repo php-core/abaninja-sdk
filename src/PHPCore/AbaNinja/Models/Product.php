@@ -10,10 +10,16 @@ namespace PHPCore\AbaNinja\Models;
 use PHPCore\AbaNinja\AbaNinja;
 use PHPCore\AbaNinja\Classes\Model;
 use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
 class Product extends Model
 {
+	public static function getUuidKey(): ?string
+	{
+		return 'productUuid';
+	}
+
 	public static function getResourceUri(): string
 	{
 		return 'products';
@@ -85,6 +91,18 @@ class Product extends Model
 			$limit,
 			$isArchived
 		);
+	}
+
+	/* API shorthand functions */
+
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function save(): self
+	{
+		return AbaNinja::ProductsApi()->update($this);
 	}
 
 	/* getters and setters */

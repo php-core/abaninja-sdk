@@ -10,6 +10,7 @@ namespace PHPCore\AbaNinja\Models;
 use PHPCore\AbaNinja\AbaNinja;
 use PHPCore\AbaNinja\Classes\Model;
 use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
 class ProductGroup extends Model
@@ -65,6 +66,18 @@ class ProductGroup extends Model
 	public static function list(bool $onlyArchived = false): array
 	{
 		return AbaNinja::ProductsApi()->listProductGroups($onlyArchived);
+	}
+
+	/* API shorthand functions */
+
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function save(): self
+	{
+		return AbaNinja::ProductsApi()->update($this);
 	}
 
 	/* getters and setters */
