@@ -7,70 +7,12 @@
 
 namespace PHPCore\AbaNinja\Models;
 
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Classes\TranslationsModel;
 
-class UnitTranslations extends Model
+class UnitTranslations extends TranslationsModel
 {
-	public function __construct(
-		protected ?UnitTranslation $de = null,
-		protected ?UnitTranslation $en = null,
-		protected ?UnitTranslation $fr = null,
-		protected ?UnitTranslation $it = null
-	) {}
-
-	public function getCreateData(array $extraData = []): array
+	public static function getTranslationKeys(): array
 	{
-		return [
-			'de' => $this->de?->getCreateData() ?? ['description' => ''],
-			'en' => $this->en?->getCreateData() ?? ['description' => ''],
-			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
-			'it' => $this->it?->getCreateData() ?? ['description' => ''],
-		];
-	}
-
-	/* getters and setters */
-
-	public function getDe(): ?UnitTranslation
-	{
-		return $this->de;
-	}
-
-	public function setDe(?UnitTranslation $de): UnitTranslations
-	{
-		$this->de = $de;
-		return $this;
-	}
-
-	public function getEn(): ?UnitTranslation
-	{
-		return $this->en;
-	}
-
-	public function setEn(?UnitTranslation $en): UnitTranslations
-	{
-		$this->en = $en;
-		return $this;
-	}
-
-	public function getFr(): ?UnitTranslation
-	{
-		return $this->fr;
-	}
-
-	public function setFr(?UnitTranslation $fr): UnitTranslations
-	{
-		$this->fr = $fr;
-		return $this;
-	}
-
-	public function getIt(): ?UnitTranslation
-	{
-		return $this->it;
-	}
-
-	public function setIt(?UnitTranslation $it): UnitTranslations
-	{
-		$this->it = $it;
-		return $this;
+		return ['unit', 'description', 'unitPlural'];
 	}
 }

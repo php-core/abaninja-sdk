@@ -7,70 +7,12 @@
 
 namespace PHPCore\AbaNinja\Models;
 
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Classes\TranslationsModel;
 
-class ActivityTypeTranslations extends Model
+class ActivityTypeTranslations extends TranslationsModel
 {
-	public function __construct(
-		protected ?ActivityTypeTranslation $de = null,
-		protected ?ActivityTypeTranslation $en = null,
-		protected ?ActivityTypeTranslation $fr = null,
-		protected ?ActivityTypeTranslation $it = null
-	) {}
-
-	public function getCreateData(array $extraData = []): array
+	public static function getTranslationKeys(): array
 	{
-		return [
-			'de' => $this->de?->getCreateData() ?? ['description' => ''],
-			'en' => $this->en?->getCreateData() ?? ['description' => ''],
-			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
-			'it' => $this->it?->getCreateData() ?? ['description' => ''],
-		];
-	}
-
-	/* getters and setters */
-
-	public function getDe(): ?ActivityTypeTranslation
-	{
-		return $this->de;
-	}
-
-	public function setDe(?ActivityTypeTranslation $de): ActivityTypeTranslations
-	{
-		$this->de = $de;
-		return $this;
-	}
-
-	public function getEn(): ?ActivityTypeTranslation
-	{
-		return $this->en;
-	}
-
-	public function setEn(?ActivityTypeTranslation $en): ActivityTypeTranslations
-	{
-		$this->en = $en;
-		return $this;
-	}
-
-	public function getFr(): ?ActivityTypeTranslation
-	{
-		return $this->fr;
-	}
-
-	public function setFr(?ActivityTypeTranslation $fr): ActivityTypeTranslations
-	{
-		$this->fr = $fr;
-		return $this;
-	}
-
-	public function getIt(): ?ActivityTypeTranslation
-	{
-		return $this->it;
-	}
-
-	public function setIt(?ActivityTypeTranslation $it): ActivityTypeTranslations
-	{
-		$this->it = $it;
-		return $this;
+		return ['description'];
 	}
 }

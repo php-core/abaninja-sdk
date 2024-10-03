@@ -7,70 +7,12 @@
 
 namespace PHPCore\AbaNinja\Models;
 
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Classes\TranslationsModel;
 
-class ProductTranslations extends Model
+class ProductTranslations extends TranslationsModel
 {
-	public function __construct(
-		protected ?ProductTranslation $de = null,
-		protected ?ProductTranslation $en = null,
-		protected ?ProductTranslation $fr = null,
-		protected ?ProductTranslation $it = null,
-	) {}
-
-	public function getCreateData(array $extraData = []): array
+	public static function getTranslationKeys(): array
 	{
-		return [
-			'de' => $this->de?->getCreateData() ?? ['description' => ''],
-			'en' => $this->en?->getCreateData() ?? ['description' => ''],
-			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
-			'it' => $this->it?->getCreateData() ?? ['description' => ''],
-		];
-	}
-
-	/* getters and setters */
-
-	public function getDe(): ?ProductTranslation
-	{
-		return $this->de;
-	}
-
-	public function setDe(?ProductTranslation $de): ProductTranslations
-	{
-		$this->de = $de;
-		return $this;
-	}
-
-	public function getEn(): ?ProductTranslation
-	{
-		return $this->en;
-	}
-
-	public function setEn(?ProductTranslation $en): ProductTranslations
-	{
-		$this->en = $en;
-		return $this;
-	}
-
-	public function getFr(): ?ProductTranslation
-	{
-		return $this->fr;
-	}
-
-	public function setFr(?ProductTranslation $fr): ProductTranslations
-	{
-		$this->fr = $fr;
-		return $this;
-	}
-
-	public function getIt(): ?ProductTranslation
-	{
-		return $this->it;
-	}
-
-	public function setIt(?ProductTranslation $it): ProductTranslations
-	{
-		$this->it = $it;
-		return $this;
+		return ['productName', 'productDescription'];
 	}
 }

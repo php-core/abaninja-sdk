@@ -7,70 +7,12 @@
 
 namespace PHPCore\AbaNinja\Models;
 
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Classes\TranslationsModel;
 
-class ProductGroupTranslations extends Model
+class ProductGroupTranslations extends TranslationsModel
 {
-	public function __construct(
-		protected ?ProductGroupTranslation $de = null,
-		protected ?ProductGroupTranslation $en = null,
-		protected ?ProductGroupTranslation $fr = null,
-		protected ?ProductGroupTranslation $it = null,
-	) {}
-
-	public function getCreateData(array $extraData = []): array
+	public static function getTranslationKeys(): array
 	{
-		return [
-			'de' => $this->de?->getCreateData() ?? ['description' => ''],
-			'en' => $this->en?->getCreateData() ?? ['description' => ''],
-			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
-			'it' => $this->it?->getCreateData() ?? ['description' => ''],
-		];
-	}
-
-	/* getters and setters */
-
-	public function getDe(): ?ProductGroupTranslation
-	{
-		return $this->de;
-	}
-
-	public function setDe(?ProductGroupTranslation $de): ProductGroupTranslations
-	{
-		$this->de = $de;
-		return $this;
-	}
-
-	public function getEn(): ?ProductGroupTranslation
-	{
-		return $this->en;
-	}
-
-	public function setEn(?ProductGroupTranslation $en): ProductGroupTranslations
-	{
-		$this->en = $en;
-		return $this;
-	}
-
-	public function getFr(): ?ProductGroupTranslation
-	{
-		return $this->fr;
-	}
-
-	public function setFr(?ProductGroupTranslation $fr): ProductGroupTranslations
-	{
-		$this->fr = $fr;
-		return $this;
-	}
-
-	public function getIt(): ?ProductGroupTranslation
-	{
-		return $this->it;
-	}
-
-	public function setIt(?ProductGroupTranslation $it): ProductGroupTranslations
-	{
-		$this->it = $it;
-		return $this;
+		return ['description'];
 	}
 }

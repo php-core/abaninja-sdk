@@ -7,70 +7,12 @@
 
 namespace PHPCore\AbaNinja\Models;
 
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Classes\TranslationsModel;
 
-class ProductPropertyTranslations extends Model
+class ProductPropertyTranslations extends TranslationsModel
 {
-	public function __construct(
-		protected ?ProductPropertyTranslation $de = null,
-		protected ?ProductPropertyTranslation $en = null,
-		protected ?ProductPropertyTranslation $fr = null,
-		protected ?ProductPropertyTranslation $it = null,
-	) {}
-
-	public function getCreateData(array $extraData = []): array
+	public static function getTranslationKeys(): array
 	{
-		return [
-			'de' => $this->de?->getCreateData() ?? ['description' => ''],
-			'en' => $this->en?->getCreateData() ?? ['description' => ''],
-			'fr' => $this->fr?->getCreateData() ?? ['description' => ''],
-			'it' => $this->it?->getCreateData() ?? ['description' => ''],
-		];
-	}
-
-	/* getters and setters */
-
-	public function getDe(): ?ProductPropertyTranslation
-	{
-		return $this->de;
-	}
-
-	public function setDe(?ProductPropertyTranslation $de): ProductPropertyTranslations
-	{
-		$this->de = $de;
-		return $this;
-	}
-
-	public function getEn(): ?ProductPropertyTranslation
-	{
-		return $this->en;
-	}
-
-	public function setEn(?ProductPropertyTranslation $en): ProductPropertyTranslations
-	{
-		$this->en = $en;
-		return $this;
-	}
-
-	public function getFr(): ?ProductPropertyTranslation
-	{
-		return $this->fr;
-	}
-
-	public function setFr(?ProductPropertyTranslation $fr): ProductPropertyTranslations
-	{
-		$this->fr = $fr;
-		return $this;
-	}
-
-	public function getIt(): ?ProductPropertyTranslation
-	{
-		return $this->it;
-	}
-
-	public function setIt(?ProductPropertyTranslation $it): ProductPropertyTranslations
-	{
-		$this->it = $it;
-		return $this;
+		return ['description', 'unit'];
 	}
 }
