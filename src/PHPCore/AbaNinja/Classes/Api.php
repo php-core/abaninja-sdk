@@ -20,6 +20,7 @@ use PHPCore\AbaNinja\Exceptions\AuthenticationException;
 use PHPCore\AbaNinja\Exceptions\NotFoundException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 use PHPCore\AbaNinja\Exceptions\ScopeException;
+use PHPCore\AbaNinja\Interfaces\IApiModel;
 use PHPCore\AbaNinja\Interfaces\IModel;
 
 class Api
@@ -188,7 +189,7 @@ class Api
 	/**
 	 * @throws ApiException|RuntimeException
 	 */
-	public function __getOne(string|IModel $model, string $uuid): IModel
+	public function __getOne(string|IApiModel $model, string $uuid): IApiModel|IModel
 	{
 		$response = $this->get($model::getResourceUri() . '/' . $uuid);
 		return $response->getHttpCode() === 200
@@ -197,16 +198,16 @@ class Api
 	}
 
 	/**
-	 * @param string|IModel $model
+	 * @param string|IApiModel $model
 	 * @param int $page
 	 * @param int|null $limit
 	 * @param array $data
 	 * @param array $options
 	 *
-	 * @return IModel[]
+	 * @return IModel[]|IApiModel[]
 	 * @throws ApiException|RuntimeException
 	 */
-	public function __paginate(string|IModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
+	public function __paginate(string|IApiModel $model, int $page = 1, ?int $limit = null, array $data = [], array $options = []): array
 	{
 		$data['page'] = $page;
 		if (!empty($limit)) {
@@ -223,14 +224,14 @@ class Api
 	}
 
 	/**
-	 * @param string|IModel $model
+	 * @param string|IApiModel $model
 	 * @param array $data
 	 * @param array $options
 	 *
-	 * @return IModel[]
+	 * @return IModel[]|IApiModel[]
 	 * @throws ApiException|RuntimeException
 	 */
-	public function __list(string|IModel $model, array $data = [], array $options = []): array
+	public function __list(string|IApiModel $model, array $data = [], array $options = []): array
 	{
 		$response = $this->get(
 			$model::getResourceUri(),
@@ -248,18 +249,18 @@ class Api
 	 * @throws ApiException
 	 */
 	public function __create(
-		IModel $model,
-		string $createUri = null,
-		array  $extraData = [],
-		array  $options = []
-	): IModel
+		IApiModel $model,
+		string    $createUri = null,
+		array     $extraData = [],
+		array     $options = []
+	): IModel|IApiModel
 	{
 		$response = $this->post(
 			(empty($createUri) ? $model::getResourceUri() : $createUri),
 			$model->getCreateData($extraData),
 			$options
 		);
-		return $response->getHttpCode() === 201
+		return $response->getHttpCode() === 200 || $response->getHttpCode() === 201
 			? $model::from(
 				(empty($dataKey = self::getDataKey())
 					? $response->getResponse()
@@ -274,11 +275,11 @@ class Api
 	 * @throws ApiException
 	 */
 	public function __update(
-		IModel $model,
-		string $updateUri = null,
-		array  $extraData = [],
-		array  $options = []
-	)
+		IApiModel $model,
+		string    $updateUri = null,
+		array     $extraData = [],
+		array     $options = []
+	): IApiModel|IModel
 	{
 		$response = $this->patch(
 			(empty($updateUri) ? $model::getResourceUri() : $updateUri)
@@ -293,5 +294,48 @@ class Api
 					: $response->getResponse()->{$dataKey})
 			)
 			: throw ApiResponseException::fromResponse($response);
+	}
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function __remove(IApiModel $model, string $removeUri = null, array $options = []): bool
+	{
+		$response = $this->delete(
+			(empty($removeUri) ? $model::getResourceUri() : $removeUri)
+			. '/' . $model->getUuid(),
+			$options
+		);
+		return $response->getHttpCode() >= 200 && $response->getHttpCode() <= 204;
+	}
+
+	/**
+	 * @throws ApiException
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 */
+	public function create(IApiModel $model): IApiModel|ApiModel
+	{
+		return $this->__create($model);
+	}
+
+	/**
+	 * @throws ApiException
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 */
+	public function update(IApiModel $model): IApiModel|ApiModel
+	{
+		return $this->__update($model);
+	}
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function remove(IApiModel $model): bool
+	{
+		return $this->__remove($model);
 	}
 }

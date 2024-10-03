@@ -8,16 +8,21 @@
 namespace PHPCore\AbaNinja\Models;
 
 use PHPCore\AbaNinja\AbaNinja;
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Classes\ApiModel;
 use PHPCore\AbaNinja\Exceptions\ApiException;
-use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
-class ProductGroup extends Model
+class ProductGroup extends ApiModel
 {
 	public static function getResourceUri(): string
 	{
 		return 'product-groups';
+	}
+
+	public static function getApi(): Api
+	{
+		return AbaNinja::ProductsApi();
 	}
 
 	public function __construct(
@@ -30,15 +35,6 @@ class ProductGroup extends Model
 		protected bool                     $isDeletable = true
 	) {}
 
-	public function getCreateData(array $extraData = []): array
-	{
-		return [
-			'groupNumber'          => $this->groupNumber,
-			'bookingAccountNumber' => $this->bookingAccountNumber,
-			'translations'         => $this->translations->getCreateData(),
-		];
-	}
-
 	public static function create(
 		int                      $groupNumber,
 		ProductGroupTranslations $translations,
@@ -46,6 +42,15 @@ class ProductGroup extends Model
 	): static
 	{
 		return new static($groupNumber, $translations, $bookingAccountNumber);
+	}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'groupNumber'          => $this->groupNumber,
+			'bookingAccountNumber' => $this->bookingAccountNumber,
+			'translations'         => $this->translations->getCreateData(),
+		];
 	}
 
 	/* static API shorthand functions */
@@ -68,18 +73,6 @@ class ProductGroup extends Model
 		return AbaNinja::ProductsApi()->listProductGroups(
 			!empty($filters['onlyArchived'])
 		);
-	}
-
-	/* API shorthand functions */
-
-	/**
-	 * @throws ApiResponseException
-	 * @throws RuntimeException
-	 * @throws ApiException
-	 */
-	public function save(): static
-	{
-		return AbaNinja::ProductsApi()->update($this);
 	}
 
 	/* getters and setters */
@@ -128,12 +121,12 @@ class ProductGroup extends Model
 		return $this;
 	}
 
-	public function getUuid(): string
+	public function getUuid(): ?string
 	{
 		return $this->uuid;
 	}
 
-	public function setUuid(string $uuid): ProductGroup
+	public function setUuid(?string $uuid): ProductGroup
 	{
 		$this->uuid = $uuid;
 		return $this;

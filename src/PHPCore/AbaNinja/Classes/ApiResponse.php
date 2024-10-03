@@ -28,7 +28,12 @@ class ApiResponse
 			|| empty($decoded = json_decode($contents))
 			|| (json_encode($decoded) !== $contents)
 		) {
-			throw new ApiResponseException('Received invalid JSON response from API');
+			if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 204) {
+				// resource was deleted successfully
+				$decoded = new stdClass();
+			} else {
+				throw new ApiResponseException('Received invalid JSON response from API');
+			}
 		}
 		return self::from($response->getStatusCode(), $decoded);
 	}

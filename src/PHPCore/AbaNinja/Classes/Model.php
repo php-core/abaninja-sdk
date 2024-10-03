@@ -9,6 +9,7 @@ namespace PHPCore\AbaNinja\Classes;
 
 use BackedEnum;
 use DateTime;
+use PHPCore\AbaNinja\Exceptions\AbaNinjaException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 use PHPCore\AbaNinja\Interfaces\IModel;
 use ReflectionClass;
@@ -18,19 +19,6 @@ use Throwable;
 
 class Model implements IModel
 {
-	public static function getUuidKey(): ?string
-	{
-		return 'uuid';
-	}
-
-	/**
-	 * @throws RuntimeException
-	 */
-	public static function getResourceUri(): string
-	{
-		throw new RuntimeException(__FUNCTION__ . ' was not implemented in ' . static::class);
-	}
-
 	public static function getSubKey(): ?string
 	{
 		return null;
@@ -211,8 +199,7 @@ class Model implements IModel
 	}
 
 	/**
-	 * @throws \ReflectionException
-	 * @throws RuntimeException
+	 * @throws \ReflectionException|RuntimeException|Throwable
 	 */
 	public static function from(array|stdClass $fromData, bool $fromMany = false): static
 	{
@@ -264,28 +251,6 @@ class Model implements IModel
 		return array_map(function (IModel $model) {
 			return $model->getCreateData();
 		}, $arrayOfModel);
-	}
-
-	public static function get(string $uuid): static
-	{
-		throw new \RuntimeException(__FUNCTION__ . ' is not implemented in ' . static::class);
-	}
-
-	public static function list(array $filters = []): array
-	{
-		throw new \RuntimeException(__FUNCTION__ . ' is not implemented in ' . static::class);
-	}
-
-	public function save(): static
-	{
-		throw new \RuntimeException(__FUNCTION__ . ' is not implemented in ' . static::class);
-	}
-
-	public function getUuid(): ?string
-	{
-		return property_exists($this, $uuidKey = static::getUuidKey()) && !empty($uuid = $this->{$uuidKey})
-			? $uuid
-			: null;
 	}
 
 	/**

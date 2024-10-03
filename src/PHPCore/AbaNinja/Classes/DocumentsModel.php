@@ -12,7 +12,7 @@ use PHPCore\AbaNinja\Enums\SentStatus;
 use PHPCore\AbaNinja\Models\Position;
 use PHPCore\AbaNinja\Models\Receiver;
 
-class DocumentsModel extends Model
+class DocumentsModel extends ApiModel
 {
 	public static function getSubKey(): ?string
 	{

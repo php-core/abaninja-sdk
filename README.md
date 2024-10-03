@@ -132,7 +132,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 ### Finances
 
 | [FinancesBankAccounts](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts)                                                                                       | ◐ |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 | [List of bank accounts](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts/get)                     | ✅ |
 | [Create bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts/post)                      | ❌ |
 | [Single bank account](https://abaninja.ch/apidocs/#tag/FinancesBankAccounts/paths/~1accounts~1{accountUuid}~1finances~1v2~1bank-accounts~1{bankAccountUuid}/get)    | ✅ |
@@ -144,7 +144,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 ### Products
 
 | [Products](https://abaninja.ch/apidocs/#tag/Products)                                                                                                                                 | ◐ |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 | [Products List](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/get)                                                                | ✅ |
 | [Create a new product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/post)                                                        | ❌ |
 | [Get an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/get)                                       | ✅ |
@@ -158,13 +158,13 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 ### ProductGroups
 
 | [ProductGroups](https://abaninja.ch/apidocs/#tag/ProductGroups)                                                                                                            | ◐ |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 | [Product groups List](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/get)                                    | ✅ |
 | [Create a new product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups/post)                            | ✅ |
 | [Check product group number](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1check-group-number/get)         | ❌ |
 | [single product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/get)                      | ✅ |
-| [Update product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/patch)                    | ❌ |
-| [Delete product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/delete)                   | ❌ |
+| [Update product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/patch)                    | ✅ |
+| [Delete product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}/delete)                   | ✅ |
 | [Archive product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}~1actions~1archive/patch) | ❌ |
 | [Restore product group](https://abaninja.ch/apidocs/#tag/ProductGroups/paths/~1accounts~1{accountUuid}~1products~1v2~1product-groups~1{groupUuid}~1actions~1restore/patch) | ❌ |
 
@@ -173,7 +173,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 ### Units
 
 | [Units](https://abaninja.ch/apidocs/#tag/Units)                                                                                  | ◐ |
-|----------------------------------------------------------------------------------------------------------------------------------|--|
+|----------------------------------------------------------------------------------------------------------------------------------|---|
 | [Units List](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/get)                       | ✅ |
 | [Create a new unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units/post)               | ❌ |
 | [Single Unit](https://abaninja.ch/apidocs/#tag/Units/paths/~1accounts~1{accountUuid}~1units~1v2~1units~1{unitUuid}/get)          | ✅ |
@@ -251,7 +251,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 ### Holidays
 
 | [SettingsTime](https://abaninja.ch/apidocs/#tag/SettingsTime)                                                                                                        | ◐ |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 | [List holiday for state](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays/get)                                  | ✅ |
 | [Create holiday entry](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays/post)                                   | ❌ |
 | [Single holiday](https://abaninja.ch/apidocs/#tag/SettingsTime/paths/~1accounts~1{accountUuid}~1holidays~1v2~1holidays~1{holidayUuid}/get)                           | ✅ |

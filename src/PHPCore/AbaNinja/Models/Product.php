@@ -8,16 +8,21 @@
 namespace PHPCore\AbaNinja\Models;
 
 use PHPCore\AbaNinja\AbaNinja;
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Classes\ApiModel;
 use PHPCore\AbaNinja\Exceptions\ApiException;
-use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
-class Product extends Model
+class Product extends ApiModel
 {
 	public static function getUuidKey(): ?string
 	{
 		return 'productUuid';
+	}
+
+	public static function getApi(): Api
+	{
+		return AbaNinja::ProductsApi();
 	}
 
 	public static function getResourceUri(): string
@@ -48,6 +53,45 @@ class Product extends Model
 		protected ?\DateTime           $archivedAt = null
 	) {}
 
+	public static function create(
+		string               $productKey,
+		ProductTranslations  $translations,
+		string|float         $cost = 0,
+		/** @var ProductProperty[] $properties */
+		array                $properties = [],
+		bool                 $isService = false,
+		?string              $unitUuid = null,
+		?int                 $productGroupNumber = null,
+		/** @var string[] $tags */
+		array                $tags = [],
+		?string              $eanCode = null,
+		?int                 $taxRate = null,
+		null|int|string      $bookingAccountNumber = null,
+		?ProductUnit         $productUnit = null,
+		?ProductProductGroup $productGroup = null,
+		bool                 $isInclusive = false,
+	): static
+	{
+		return new static(
+			$productKey,
+			$translations,
+			$cost,
+			$properties,
+			$isService,
+			$unitUuid,
+			$productGroupNumber,
+			$tags,
+			$eanCode,
+			$taxRate,
+			$bookingAccountNumber,
+			null,
+			null,
+			$productUnit,
+			$productGroup,
+			$isInclusive
+		);
+	}
+
 	public function getCreateData(array $extraData = []): array
 	{
 		return [
@@ -58,8 +102,8 @@ class Product extends Model
 			'translations'         => $this->translations->getCreateData(),
 			'properties'           => self::getCreateDataArray($this->properties),
 			'eanCode'              => $this->eanCode,
-			'unitUuid'             => $this->unitUuid,
-			'cost'                 => $this->cost,
+			'unitUuid'             => empty($this->productUnit) ? $this->unitUuid : $this->productUnit->getUuid(),
+			'cost'                 => floatval($this->cost),
 			'taxRate'              => $this->taxRate,
 			'bookingAccountNumber' => $this->bookingAccountNumber,
 		];
@@ -87,18 +131,6 @@ class Product extends Model
 			$filters['limit'] ?? null,
 			$filters['isArchived'] ?? false,
 		);
-	}
-
-	/* API shorthand functions */
-
-	/**
-	 * @throws ApiResponseException
-	 * @throws RuntimeException
-	 * @throws ApiException
-	 */
-	public function save(): static
-	{
-		return AbaNinja::ProductsApi()->update($this);
 	}
 
 	/* getters and setters */

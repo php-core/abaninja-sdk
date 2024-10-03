@@ -11,7 +11,7 @@ use PHPCore\AbaNinja\Classes\Api;
 use PHPCore\AbaNinja\Exceptions\ApiException;
 use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
-use PHPCore\AbaNinja\Interfaces\IModel;
+use PHPCore\AbaNinja\Interfaces\IApiModel;
 use PHPCore\AbaNinja\Models\Product;
 use PHPCore\AbaNinja\Models\ProductGroup;
 
@@ -31,7 +31,7 @@ class Products extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getProduct(string $uuid): Product|IModel
+	public function getProduct(string $uuid): Product|IApiModel
 	{
 		return $this->__getOne(Product::class, $uuid);
 	}
@@ -61,7 +61,7 @@ class Products extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getProductGroup(string $uuid): ProductGroup|IModel
+	public function getProductGroup(string $uuid): ProductGroup|IApiModel
 	{
 		return $this->__getOne(ProductGroup::class, $uuid);
 	}
@@ -85,11 +85,11 @@ class Products extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function create(Product|ProductGroup $productOrGroup): Product|ProductGroup|IModel
+	public function create(Product|ProductGroup|IApiModel $model): Product|ProductGroup|IApiModel
 	{
 		return $this->__create(
-			$productOrGroup,
-			$productOrGroup::getResourceUri(),
+			$model,
+			$model::getResourceUri(),
 		);
 	}
 
@@ -98,11 +98,11 @@ class Products extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function update(Product|ProductGroup $productOrGroup): Product|ProductGroup|IModel
+	public function update(Product|ProductGroup|IApiModel $model): Product|ProductGroup|IApiModel
 	{
 		return $this->__update(
-			$productOrGroup,
-			$productOrGroup::getResourceUri(),
+			$model,
+			$model::getResourceUri(),
 		);
 	}
 }

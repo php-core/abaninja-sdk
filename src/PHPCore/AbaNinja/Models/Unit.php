@@ -7,9 +7,12 @@
 
 namespace PHPCore\AbaNinja\Models;
 
-use PHPCore\AbaNinja\Classes\Model;
+use PHPCore\AbaNinja\AbaNinja;
+use PHPCore\AbaNinja\Classes\ApiModel;
+use PHPCore\AbaNinja\Exceptions\ApiException;
+use PHPCore\AbaNinja\Exceptions\RuntimeException;
 
-class Unit extends Model
+class Unit extends ApiModel
 {
 	public static function getResourceUri(): string
 	{
@@ -20,10 +23,50 @@ class Unit extends Model
 		protected bool             $active,
 		protected UnitTranslations $translations,
 		protected ?string          $isocode = null,
+
+		protected ?int             $id = null,
+		protected ?string          $uuid = null,
 	) {}
 
-	protected int $id;
-	protected string $uuid;
+	public static function create(
+		UnitTranslations $translations,
+		?string          $isocode = null,
+		bool             $active = true
+	): static
+	{
+		return new static($active, $translations, $isocode);
+	}
+
+	public function getCreateData(array $extraData = []): array
+	{
+		return [
+			'isocode'      => $this->isocode,
+			'active'       => $this->active,
+			'translations' => $this->translations->getCreateData(),
+		];
+	}
+
+	/* static API shorthand functions */
+
+	/**
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public static function get(string $uuid): static
+	{
+		return AbaNinja::UnitsApi()->getUnit($uuid);
+	}
+
+	/**
+	 * @throws ApiException
+	 * @throws RuntimeException
+	 */
+	public static function list(array $filters = []): array
+	{
+		return AbaNinja::UnitsApi()->listUnits();
+	}
+
+	/* getters and setters */
 
 	public function isActive(): bool
 	{

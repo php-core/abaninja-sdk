@@ -58,6 +58,16 @@ class TranslationsModel extends Model
 		return $createData;
 	}
 
+	public function setTranslationValue(
+		string $languageCode,
+		string $forKey,
+		string $translationValue
+	): static
+	{
+		$this->{$languageCode}->{$forKey} = $translationValue;
+		return $this;
+	}
+
 	/* getters and setters */
 
 	public function getDe(): ?\stdClass

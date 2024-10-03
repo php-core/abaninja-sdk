@@ -14,7 +14,7 @@ use PHPCore\AbaNinja\Enums\DocumentAction;
 use PHPCore\AbaNinja\Exceptions\ApiException;
 use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
-use PHPCore\AbaNinja\Interfaces\IModel;
+use PHPCore\AbaNinja\Interfaces\IApiModel;
 use PHPCore\AbaNinja\Models\ContractNote;
 use PHPCore\AbaNinja\Models\CreditNote;
 use PHPCore\AbaNinja\Models\DeliveryNote;
@@ -38,12 +38,14 @@ class Documents extends Api
 	}
 
 	/**
-	 * @param string|IModel $model
+	 * @param string|IApiModel $model
+	 * @param string $documentUuid
 	 *
 	 * @return DocumentAction[]
-	 * @throws RuntimeException|ApiException
+	 * @throws ApiException
+	 * @throws RuntimeException
 	 */
-	public function __getActions(string|IModel $model, string $documentUuid): array
+	public function __getActions(string|IApiModel $model, string $documentUuid): array
 	{
 		$response = $this->get($model::getResourceUri() . '/' . $documentUuid . '/actions');
 		return DocumentAction::fromMany($response->getResponse()->data);
@@ -54,7 +56,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function create(DocumentsModel $model): IModel|DocumentsModel
+	public function create(DocumentsModel|IApiModel $model): IApiModel|DocumentsModel
 	{
 		return $this->__create(
 			$model,
@@ -66,7 +68,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingQuote(string $documentUuid): Quote|IModel
+	public function getExistingQuote(string $documentUuid): IApiModel|Quote
 	{
 		return $this->__getOne(Quote::class, $documentUuid);
 	}
@@ -101,7 +103,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingContractNote(string $documentUuid): ContractNote|IModel
+	public function getExistingContractNote(string $documentUuid): IApiModel|ContractNote
 	{
 		return $this->__getOne(ContractNote::class, $documentUuid);
 	}
@@ -137,7 +139,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingDeliveryNote(string $documentUuid): DeliveryNote|IModel
+	public function getExistingDeliveryNote(string $documentUuid): IApiModel|DeliveryNote
 	{
 		return $this->__getOne(DeliveryNote::class, $documentUuid);
 	}
@@ -173,7 +175,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingInvoice(string $documentUuid): Invoice|IModel
+	public function getExistingInvoice(string $documentUuid): IApiModel|Invoice
 	{
 		return $this->__getOne(Invoice::class, $documentUuid);
 	}
@@ -208,7 +210,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingCreditNote(string $documentUuid): CreditNote|IModel
+	public function getExistingCreditNote(string $documentUuid): IApiModel|CreditNote
 	{
 		return $this->__getOne(CreditNote::class, $documentUuid);
 	}
@@ -243,7 +245,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingRecurringInvoice(string $documentUuid): RecurringInvoice|IModel
+	public function getExistingRecurringInvoice(string $documentUuid): IApiModel|RecurringInvoice
 	{
 		return $this->__getOne(RecurringInvoice::class, $documentUuid);
 	}
@@ -278,7 +280,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingTemplate(string $documentUuid): Template|IModel
+	public function getExistingTemplate(string $documentUuid): IApiModel|Template
 	{
 		return $this->__getOne(Template::class, $documentUuid);
 	}
@@ -339,7 +341,7 @@ class Documents extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function getExistingQueue(string $queueUuid): Queue|IModel
+	public function getExistingQueue(string $queueUuid): IApiModel|Queue
 	{
 		return $this->__getOne(Queue::class, $queueUuid);
 	}

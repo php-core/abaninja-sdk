@@ -8,9 +8,12 @@
 namespace PHPCore\AbaNinja\Apis;
 
 use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Classes\ApiModel;
+use PHPCore\AbaNinja\Classes\Model;
 use PHPCore\AbaNinja\Exceptions\ApiException;
 use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
+use PHPCore\AbaNinja\Interfaces\IApiModel;
 use PHPCore\AbaNinja\Interfaces\IModel;
 use PHPCore\AbaNinja\Models\Company;
 use PHPCore\AbaNinja\Models\Person;
@@ -82,14 +85,27 @@ class Addresses extends Api
 	 * @throws RuntimeException
 	 * @throws ApiException
 	 */
-	public function create(Person|Company $model, bool $force = false): IModel
+	public function create(Person|Company|IApiModel $model, bool $force = false): IApiModel
 	{
 		return $this->__create(
 			$model,
 			'addresses',
 			[
-				'force' => $force
+				'force' => $force,
 			]
+		);
+	}
+
+	/**
+	 * @throws ApiResponseException
+	 * @throws RuntimeException
+	 * @throws ApiException
+	 */
+	public function update(IApiModel $model): IApiModel|ApiModel
+	{
+		return $this->__update(
+			$model,
+			$model::getResourceUri(),
 		);
 	}
 
