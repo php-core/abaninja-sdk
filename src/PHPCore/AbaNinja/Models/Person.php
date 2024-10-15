@@ -28,13 +28,13 @@ class Person extends Model
 		protected string        $language,
 
 		/** @var Contact[] $contacts */
-		protected array         $contacts,
+		protected array         $contacts = [],
 
 		/** @var string[] $tags */
-		protected array         $tags,
+		protected array         $tags = [],
 
 		/** @var Address[] $addresses */
-		protected array         $addresses,
+		protected array         $addresses = [],
 
 		protected bool          $automaticDunning = false,
 		protected ?string       $privateNotes = null,
