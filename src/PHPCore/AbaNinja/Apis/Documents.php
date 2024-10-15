@@ -9,6 +9,7 @@ namespace PHPCore\AbaNinja\Apis;
 
 use DateTime;
 use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Classes\ApiActionResponse;
 use PHPCore\AbaNinja\Classes\DocumentsModel;
 use PHPCore\AbaNinja\Enums\DocumentAction;
 use PHPCore\AbaNinja\Exceptions\ApiException;
@@ -45,11 +46,22 @@ class Documents extends Api
 	 * @throws ApiException
 	 * @throws RuntimeException
 	 */
-	public function __getActions(string|IApiModel $model, string $documentUuid): array
+    public function getActions(string|IApiModel $model, string $documentUuid): array
 	{
-		$response = $this->get($model::getResourceUri() . '/' . $documentUuid . '/actions');
-		return DocumentAction::fromMany($response->getResponse()->data);
+        return DocumentAction::fromMany(array_keys($this->__getActions($model, $documentUuid)));
 	}
+
+    /**
+     * @throws RuntimeException
+     * @throws ApiException
+     */
+    public function executeAction(
+        string|IApiModel $model,
+        string $documentUuid,
+        DocumentAction $action
+    ): ApiActionResponse {
+        return $this->__executeAction($model, $documentUuid, $action->value);
+    }
 
 	/**
 	 * @throws ApiResponseException
@@ -96,7 +108,7 @@ class Documents extends Api
 	 */
 	public function getActionsForQuotes(string $documentUuid): array
 	{
-		return $this->__getActions(Quote::class, $documentUuid);
+        return $this->getActions(Quote::class, $documentUuid);
 	}
 
 	/**
@@ -131,7 +143,7 @@ class Documents extends Api
 	 */
 	public function getActionsForContractNotes(string $documentUuid): array
 	{
-		return $this->__getActions(ContractNote::class, $documentUuid);
+        return $this->getActions(ContractNote::class, $documentUuid);
 	}
 
 
@@ -167,7 +179,7 @@ class Documents extends Api
 	 */
 	public function getActionsForDeliveryNotes(string $documentUuid): array
 	{
-		return $this->__getActions(DeliveryNote::class, $documentUuid);
+        return $this->getActions(DeliveryNote::class, $documentUuid);
 	}
 
 
@@ -203,7 +215,7 @@ class Documents extends Api
 	 */
 	public function getActionsForInvoice(string $documentUuid): array
 	{
-		return $this->__getActions(Invoice::class, $documentUuid);
+        return $this->getActions(Invoice::class, $documentUuid);
 	}
 
 	/**
@@ -238,7 +250,7 @@ class Documents extends Api
 	 */
 	public function getActionsForCreditNote(string $documentUuid): array
 	{
-		return $this->__getActions(CreditNote::class, $documentUuid);
+        return $this->getActions(CreditNote::class, $documentUuid);
 	}
 
 	/**
@@ -273,7 +285,7 @@ class Documents extends Api
 	 */
 	public function getActionsForRecurringInvoice(string $documentUuid): array
 	{
-		return $this->__getActions(RecurringInvoice::class, $documentUuid);
+        return $this->getActions(RecurringInvoice::class, $documentUuid);
 	}
 
 	/**
@@ -308,7 +320,7 @@ class Documents extends Api
 	 */
 	public function getActionsForTemplate(string $documentUuid): array
 	{
-		return $this->__getActions(Template::class, $documentUuid);
+        return $this->getActions(Template::class, $documentUuid);
 	}
 
 	/**
@@ -334,7 +346,7 @@ class Documents extends Api
 	 */
 	public function getActionsForReceipt(string $documentUuid): array
 	{
-		return $this->__getActions(Receipt::class, $documentUuid);
+        return $this->getActions(Receipt::class, $documentUuid);
 	}
 
 	/**

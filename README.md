@@ -57,7 +57,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Existing quote](https://abaninja.ch/apidocs/#tag/DocumentsQuotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1quotes~1{documentUuid}/get)                                              | ✅ |
 | [Update a quote](https://abaninja.ch/apidocs/#tag/DocumentsQuotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1quotes~1{documentUuid}/patch)                                            | ❌ |
 | [Actions for an existing quote](https://abaninja.ch/apidocs/#tag/DocumentsQuotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1quotes~1{documentUuid}~1actions/get)                      | ✅ |
-| [Execute an action on an existing quote](https://abaninja.ch/apidocs/#tag/DocumentsQuotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1quotes~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing quote](https://abaninja.ch/apidocs/#tag/DocumentsQuotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1quotes~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
 | [DocumentsContractNotes](https://abaninja.ch/apidocs/#tag/DocumentsContractNotes)                                                                                                                                 | ◐ |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -66,7 +66,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Existing contract note](https://abaninja.ch/apidocs/#tag/DocumentsContractNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1contract-notes~1{documentUuid}/get)                                              | ✅ |
 | [Update contract note](https://abaninja.ch/apidocs/#tag/DocumentsContractNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1contract-notes~1{documentUuid}/patch)                                              | ❌ |
 | [Actions for an existing contract note](https://abaninja.ch/apidocs/#tag/DocumentsContractNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1contract-notes~1{documentUuid}~1actions/get)                      | ✅ |
-| [Execute an action on an existing contract note](https://abaninja.ch/apidocs/#tag/DocumentsContractNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1contract-notes~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing contract note](https://abaninja.ch/apidocs/#tag/DocumentsContractNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1contract-notes~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
 | [DocumentsDeliveryNotes](https://abaninja.ch/apidocs/#tag/DocumentsDeliveryNotes)                                                                                                                                 | ◐ |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -75,7 +75,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Existing delivery note](https://abaninja.ch/apidocs/#tag/DocumentsDeliveryNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1delivery-notes~1{documentUuid}/get)                                              | ✅ |
 | [Update delivery note](https://abaninja.ch/apidocs/#tag/DocumentsDeliveryNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1delivery-notes~1{documentUuid}/patch)                                              | ❌ |
 | [Actions for an existing delivery note](https://abaninja.ch/apidocs/#tag/DocumentsDeliveryNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1delivery-notes~1{documentUuid}~1actions/get)                      | ✅ |
-| [Execute an action on an existing delivery note](https://abaninja.ch/apidocs/#tag/DocumentsDeliveryNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1delivery-notes~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing delivery note](https://abaninja.ch/apidocs/#tag/DocumentsDeliveryNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1delivery-notes~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
 | [DocumentsInvoices](https://abaninja.ch/apidocs/#tag/DocumentsInvoices)                                                                                                                          | ◐ |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -84,7 +84,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Existing invoice](https://abaninja.ch/apidocs/#tag/DocumentsInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1invoices~1{documentUuid}/get)                                              | ✅ |
 | [Update invoice](https://abaninja.ch/apidocs/#tag/DocumentsInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1invoices~1{documentUuid}/patch)                                              | ❌ |
 | [Actions for an existing invoice](https://abaninja.ch/apidocs/#tag/DocumentsInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1invoices~1{documentUuid}~1actions/get)                      | ✅ |
-| [Execute an action on an existing invoice](https://abaninja.ch/apidocs/#tag/DocumentsInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1invoices~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing invoice](https://abaninja.ch/apidocs/#tag/DocumentsInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1invoices~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
 | [DocumentsInvoicesImported](https://abaninja.ch/apidocs/#tag/DocumentsInvoicesImported)                                                                                       | ✅ |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -97,7 +97,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Existing credit note](https://abaninja.ch/apidocs/#tag/DocumentsCreditNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1credit-notes~1{documentUuid}/get)                                              | ✅ |
 | [Update credit note](https://abaninja.ch/apidocs/#tag/DocumentsCreditNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1credit-notes~1{documentUuid}/patch)                                              | ❌ |
 | [Actions for an existing credit note](https://abaninja.ch/apidocs/#tag/DocumentsCreditNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1credit-notes~1{documentUuid}~1actions/get)                      | ✅ |
-| [Execute an action on an existing credit note](https://abaninja.ch/apidocs/#tag/DocumentsCreditNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1credit-notes~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing credit note](https://abaninja.ch/apidocs/#tag/DocumentsCreditNotes/paths/~1accounts~1{accountUuid}~1documents~1v2~1credit-notes~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
 | [DocumentsRecurringInvoices](https://abaninja.ch/apidocs/#tag/DocumentsRecurringInvoices)                                                                                                                                     | ◐ |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -106,7 +106,7 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Existing recurring invoice](https://abaninja.ch/apidocs/#tag/DocumentsRecurringInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1recurring-invoices~1{documentUuid}/get)                                              | ✅ |
 | [Update recurring invoice](https://abaninja.ch/apidocs/#tag/DocumentsRecurringInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1recurring-invoices~1{documentUuid}/patch)                                              | ❌ |
 | [Actions for an existing recurring invoice](https://abaninja.ch/apidocs/#tag/DocumentsRecurringInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1recurring-invoices~1{documentUuid}~1actions/get)                      | ✅ |
-| [Execute an action on an existing recurring invoice](https://abaninja.ch/apidocs/#tag/DocumentsRecurringInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1recurring-invoices~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing recurring invoice](https://abaninja.ch/apidocs/#tag/DocumentsRecurringInvoices/paths/~1accounts~1{accountUuid}~1documents~1v2~1recurring-invoices~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
 | [DocumentsTemplates](https://abaninja.ch/apidocs/#tag/DocumentsTemplates)                                                                                                                           | ◐ |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -115,13 +115,13 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 | [Existing template](https://abaninja.ch/apidocs/#tag/DocumentsTemplates/paths/~1accounts~1{accountUuid}~1documents~1v2~1templates~1{documentUuid}/get)                                              | ✅ |
 | [Update template](https://abaninja.ch/apidocs/#tag/DocumentsTemplates/paths/~1accounts~1{accountUuid}~1documents~1v2~1templates~1{documentUuid}/patch)                                              | ❌ |
 | [List template actions](https://abaninja.ch/apidocs/#tag/DocumentsTemplates/paths/~1accounts~1{accountUuid}~1documents~1v2~1templates~1{documentUuid}~1actions/get)                                 | ✅ |
-| [Execute an action on an existing template](https://abaninja.ch/apidocs/#tag/DocumentsTemplates/paths/~1accounts~1{accountUuid}~1documents~1v2~1templates~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing template](https://abaninja.ch/apidocs/#tag/DocumentsTemplates/paths/~1accounts~1{accountUuid}~1documents~1v2~1templates~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
-| [DocumentsReceipts](https://abaninja.ch/apidocs/#tag/DocumentsReceipts)                                                                                                                          | ◐ |
+| [DocumentsReceipts](https://abaninja.ch/apidocs/#tag/DocumentsReceipts)                                                                                                                          | ✅ |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 | [Receipts List](https://abaninja.ch/apidocs/#tag/DocumentsReceipts/paths/~1accounts~1{accountUuid}~1documents~1v2~1receipts/get)                                                                 | ✅ |
 | [Actions for an existing receipt](https://abaninja.ch/apidocs/#tag/DocumentsReceipts/paths/~1accounts~1{accountUuid}~1documents~1v2~1receipts~1{documentUuid}~1actions/get)                      | ✅ |
-| [Execute an action on an existing receipt](https://abaninja.ch/apidocs/#tag/DocumentsReceipts/paths/~1accounts~1{accountUuid}~1documents~1v2~1receipts~1{documentUuid}~1actions~1{action}/patch) | ❌ |
+| [Execute an action on an existing receipt](https://abaninja.ch/apidocs/#tag/DocumentsReceipts/paths/~1accounts~1{accountUuid}~1documents~1v2~1receipts~1{documentUuid}~1actions~1{action}/patch) | ✅ |
 
 | [DocumentsQueue](https://abaninja.ch/apidocs/#tag/DocumentsQueue)                                                                        | ✅ |
 |------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -143,15 +143,15 @@ $person = AbaNinja::AddressesApi()->getPerson($personUuid);
 
 ### Products
 
-| [Products](https://abaninja.ch/apidocs/#tag/Products)                                                                                                                                 | ◐ |
+| [Products](https://abaninja.ch/apidocs/#tag/Products)                                                                                                                                 | ✅ |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
 | [Products List](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/get)                                                                | ✅ |
-| [Create a new product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/post)                                                        | ❌ |
+| [Create a new product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products/post)                                                        | ✅ |
 | [Get an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/get)                                       | ✅ |
-| [Update an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/patch)                                  | ❌ |
-| [Remove an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/delete)                                 | ❌ |
-| [Available actions for an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1{productUuid}~1actions/get)                      | ❌ |
-| [Execute an action on an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}~1actions~1{action}/patch) | ❌ |
+| [Update an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/patch)                                  | ✅ |
+| [Remove an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}/delete)                                 | ✅ |
+| [Available actions for an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1{productUuid}~1actions/get)                      | ✅ |
+| [Execute an action on an existing product](https://abaninja.ch/apidocs/#tag/Products/paths/~1accounts~1{accountUuid}~1products~1v2~1products~1{productUuid}~1actions~1{action}/patch) | ✅ |
 
 ---
 

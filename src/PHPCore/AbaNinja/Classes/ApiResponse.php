@@ -23,18 +23,31 @@ class ApiResponse
 	 */
 	public static function fromResponse(Response $response): self
 	{
-		if (
-			empty($contents = $response->getBody()->getContents())
-			|| empty($decoded = json_decode($contents))
-			|| (json_encode($decoded) !== $contents)
-		) {
-			if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 204) {
-				// resource was deleted successfully
-				$decoded = new stdClass();
-			} else {
-				throw new ApiResponseException('Received invalid JSON response from API');
-			}
-		}
+        $contents = $response->getBody()->getContents();
+        if (!empty($_ENV['RESPONSE_LOGGING']) && $_ENV['RESPONSE_LOGGING'] === 'true') {
+            print PHP_EOL . 'CONTENTS:' . PHP_EOL;
+            Helper::dump($contents);
+        }
+        try {
+            if (
+                empty($contents)
+                || empty($decoded = json_decode($contents, false, 512, JSON_THROW_ON_ERROR))
+                || (json_encode($decoded) !== $contents)
+            ) {
+                if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 204) {
+                    // resource was deleted successfully
+                    $decoded = new stdClass();
+                } else {
+                    throw new ApiResponseException('Received invalid response from API');
+                }
+            }
+        } catch (\JsonException $e) {
+            throw new ApiResponseException('Received invalid JSON response from API. Error from JSON parser: ' . $e->getMessage());
+        }
+        if (!empty($_ENV['RESPONSE_LOGGING']) && $_ENV['RESPONSE_LOGGING'] === 'true') {
+            print PHP_EOL . 'PARSED:' . PHP_EOL;
+            Helper::dump($decoded);
+        }
 		return self::from($response->getStatusCode(), $decoded);
 	}
 

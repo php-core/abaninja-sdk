@@ -10,6 +10,7 @@ namespace PHPCore\AbaNinja\Tests\PHPCore\AbaNinja\Tests;
 use PHPCore\AbaNinja\AbaNinja;
 use PHPCore\AbaNinja\Enums\DocumentAction;
 use PHPCore\AbaNinja\Exceptions\ScopeException;
+use PHPCore\AbaNinja\Models\Invoice;
 use PHPUnit\Framework\TestCase;
 
 final class DocumentsTest extends TestCase
@@ -129,6 +130,22 @@ final class DocumentsTest extends TestCase
 		);
 		self::assertContains(DocumentAction::Activity, $actions);
 	}
+
+    public function testExecuteDownloadPDFActionForInvoice()
+    {
+        if (empty($_ENV['TEST_EXISTING_INVOICE_UUID'])) {
+            self::markTestSkipped('To test testActionForInvoice function, set "TEST_EXISTING_INVOICE_UUID" environment variable to a valid existing invoices UUID on the account');
+        }
+
+        $this->assertArrayHasKey(
+            'downloadUrl',
+            AbaNinja::DocumentsApi()->executeAction(
+                Invoice::class,
+                $_ENV['TEST_EXISTING_INVOICE_UUID'],
+                DocumentAction::DownloadPDF
+            )->getData()
+        );
+    }
 
 	public function testGetCreditNote()
 	{

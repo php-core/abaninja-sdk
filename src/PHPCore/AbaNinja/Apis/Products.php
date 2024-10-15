@@ -8,6 +8,8 @@
 namespace PHPCore\AbaNinja\Apis;
 
 use PHPCore\AbaNinja\Classes\Api;
+use PHPCore\AbaNinja\Classes\ApiActionResponse;
+use PHPCore\AbaNinja\Enums\ProductAction;
 use PHPCore\AbaNinja\Exceptions\ApiException;
 use PHPCore\AbaNinja\Exceptions\ApiResponseException;
 use PHPCore\AbaNinja\Exceptions\RuntimeException;
@@ -56,6 +58,23 @@ class Products extends Api
 		]);
 	}
 
+    /**
+     * @throws RuntimeException
+     * @throws ApiException
+     */
+    public function getActionsForProduct(string $uuid): array
+    {
+        return ProductAction::fromMany($this->__getActions(Product::class, $uuid));
+    }
+
+    /**
+     * @throws RuntimeException
+     * @throws ApiException
+     */
+    public function executeActionOnProduct(string $uuid, ProductAction $action): ApiActionResponse
+    {
+        return $this->__executeAction(Product::class, $uuid, $action->value);
+    }
 
 	/**
 	 * @throws RuntimeException
